@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  GPU = "AMD"; # "AMD" or "NVIDIA"
+  GPU = "NVIDIA"; # "AMD" or "NVIDIA"
 in {
   imports = [
     # Conditionally import the exact hardware file path:
