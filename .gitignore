@@ -1,0 +1,24 @@
+# --- Nix ---
+result
+result-*
+
+secrets.nix
+home/git.nix
+
+# --- Backups / temp ---
+backup/
+*.bak
+*~
+*.swp
+*.sh
+
+# --- Misc generated ---
+*.dur
+
+# --- OS junk ---
+.DS_Store
+git.nix
+/home/git.nix
+
+/private
+
