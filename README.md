@@ -1,4 +1,3 @@
-### DISCLAIMER: THIS README IS NOT FINAL
 
 # NixOS Config — Testing Branch 🧪
 
@@ -46,3 +45,5 @@ If something here breaks, that is very much within spec.
 ├── flake.lock
 └── home.nix            # Main Home Manager configuration
 ```
+
+### DISCLAIMER: THIS README IS NOT FINAL
