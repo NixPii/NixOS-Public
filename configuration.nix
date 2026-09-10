@@ -11,7 +11,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./system/default.nix
-    ./hardware-specific/hw-conf-def.nix
+    ./hardware-specific/amd.nix
     ./programs/default.nix
     ./users/default.nix
     ./extra/default.nix

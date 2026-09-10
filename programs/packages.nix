@@ -127,6 +127,7 @@
     libheif
     libheif.out
     (blender.override {rocmSupport = true;})
+    xfce4-exo
 
     # DVD-R and CD Stuff
     brasero
