@@ -126,7 +126,8 @@
     proton-vpn
     libheif
     libheif.out
-    (blender.override {rocmSupport = true;})
+    # Specify blender here, for NVIDIA and AMD branches
+    xfce4-exo
 
     # DVD-R and CD Stuff
     brasero

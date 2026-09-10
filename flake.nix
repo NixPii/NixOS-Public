@@ -47,7 +47,7 @@
 
     #  Piper-Git and Libratbag-Git (Own repo)
     ratbag-git = {
-      url = "git+https://codeberg.org/NixPii/piper-git-nix.git";
+      url = "git+https://codeberg.org/NixPii/piper-git-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
