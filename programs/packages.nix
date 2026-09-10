@@ -126,7 +126,8 @@
     proton-vpn
     libheif
     libheif.out
-    (blender.override {rocmSupport = true;})
+    blender # Remove ROCm, there is no ROCm on NVIDIA 
+    xfce4-exo
 
     # DVD-R and CD Stuff
     brasero

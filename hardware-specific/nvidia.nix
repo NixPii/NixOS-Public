@@ -17,7 +17,6 @@
     enable32Bit = true;
   };
 
-  builtins.throw "Testing file inclusion: Success! File was evaluated."; 
 
   services.xserver.videoDrivers = ["nvidia"];
 
