@@ -235,7 +235,6 @@
 
     # VR + Android
     android-tools
-    android-studio
     usbutils
 
     # Extra
