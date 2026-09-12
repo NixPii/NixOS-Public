@@ -21,7 +21,7 @@
     enable = true;
     clean.enable = false;
     clean.extraArgs = "--keep-since 4d --keep 3";
-    flake = "/home/nixpii/.nixos"; # sets NH_OS_FLAKE variable for you
+    flake = ""; # sets NH_OS_FLAKE variable for you
   };
 
   # File Manager

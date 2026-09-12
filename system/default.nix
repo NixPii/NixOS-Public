@@ -3,9 +3,8 @@
   imports = [
     ./sysconfig.nix
     ./services.nix
-    ./hardware.nix
+    # ./hardware.nix # TODO: Uncomment, commented for testing
     ./firewall.nix
-    #./filesystem.nix
     ./xdg.nix
   ];
 }

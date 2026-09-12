@@ -11,11 +11,16 @@
   imports = [
     # Include the results of the hardware scan.
     ./system/default.nix
-    ./hardware-specific/hw-conf-def.nix
+    ./modules/gpu.nix
     ./programs/default.nix
     ./users/default.nix
     ./extra/default.nix
     ./theme/default.nix
   ];
+
+  nixpii.gpu = {
+    profile = "generic";
+    specialisations.enable = false;
+  };
   system.stateVersion = "25.11"; # Did you read the comment?
 }
