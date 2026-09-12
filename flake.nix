@@ -90,6 +90,10 @@
         nvf.nixosModules.default
 
         {
+          fileSystems."/" = {
+            device = "none";
+            fsType = "tmpfs";
+          };
           # Inlined home-manager config
           home-manager = {
             useGlobalPkgs = true;

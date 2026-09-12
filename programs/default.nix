@@ -7,6 +7,5 @@
     ./mouse.nix
     ./music.nix
     ./krisp.nix
-    ./ai.nix
   ];
 }

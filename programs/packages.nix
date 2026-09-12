@@ -21,7 +21,7 @@
     enable = true;
     clean.enable = false;
     clean.extraArgs = "--keep-since 4d --keep 3";
-    flake = "/home/nixpii/.nixos"; # sets NH_OS_FLAKE variable for you
+    flake = ""; # sets NH_OS_FLAKE variable for you
   };
 
   # File Manager
@@ -126,7 +126,8 @@
     proton-vpn
     libheif
     libheif.out
-    (blender.override {rocmSupport = true;})
+    # Specify blender here, for NVIDIA and AMD branches
+    xfce4-exo
 
     # DVD-R and CD Stuff
     brasero
@@ -234,7 +235,6 @@
 
     # VR + Android
     android-tools
-    android-studio
     usbutils
 
     # Extra

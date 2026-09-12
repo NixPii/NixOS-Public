@@ -18,33 +18,6 @@
         theme = pkgs.catppuccin-grub.override {
           flavor = "frappe"; # latte, frappe, macchiato, mocha
         };
-        extraEntries = ''
-                  menuentry "Windows 11" --class windows11 {
-                    insmod part_gpt
-                    insmod fat
-                    insmod chain
-                    search --no-floppy --fs-uuid --set=root BA18-9388
-                    chainloader /EFI/Microsoft/Boot/bootmgfw.efi
-                    }
-
-                  menuentry "Android 17 bare-metal" {
-                    set gfxpayload=keep
-
-                    linux /android-test/bzImage \
-                    console=tty0 \
-                    loglevel=8 \
-                    ignore_loglevel \
-                    panic=0 \
-                    androidboot.hardware=amdpc \
-                    androidboot.boot_part_uuid=afd01174-8e07-493b-8666-442afcb5a390 \
-                    androidboot.selinux=permissive \
-                    androidboot.init_fatal_panic=true \
-                    androidboot.first_stage_console=1 \
-                    androidboot.console=tty0
-
-                    initrd /android-test/android-ramdisk.img /android-test/amdgpu-firmware.img /android-test/firststage-debug.img
-          }
-        '';
       };
       #efi.canTouchEfiVariables = true;
       #efi.efiSysMountPoint = "/boot";
