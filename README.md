@@ -1,187 +1,203 @@
-# NVIDIA Support — WIP
+# NVIDIA Support — Archived
 
-> [!WARNING]
-> **This branch is a work in progress.**
+> [!IMPORTANT]
+> **This branch is archived and is no longer the recommended way to use NVIDIA
+> GPUs with this project.**
 >
-> This is **NOT the main branch** and should not be treated as the stable/default configuration.
+> A better GPU implementation now exists in the **main branch**, where AMD,
+> NVIDIA, Nouveau, and generic GPU configurations are handled through selectable
+> GPU profiles.
 >
-> Things may break. Things may be incomplete. Some NVIDIA generations may behave differently than expected.
+> This branch is being kept only for historical reference.
 
 ## About This Branch
 
-This branch exists to add and experiment with NVIDIA support alongside the main AMD-focused configuration.
+This branch was originally created to experiment with NVIDIA support alongside
+the project's AMD-focused configuration.
 
-The current goal is to provide separate NixOS specialisations for different NVIDIA GPU generations, including:
+It introduced separate NVIDIA configurations for different GPU generations,
+including:
 
-* Modern NVIDIA GPUs using the NVIDIA Open kernel modules
-* GTX 10-series / Pascal GPUs
-* Older Kepler-based NVIDIA GPUs
-* Nouveau as a fallback option
+- Modern NVIDIA GPUs using the NVIDIA Open kernel modules
+- GTX 10-series / Pascal GPUs
+- Older NVIDIA GPUs using legacy driver branches
+- Nouveau as a fallback option
 
-This is still under active development and testing.
+This approach worked as an experiment, but maintaining a separate NVIDIA branch
+turned out not to be the best long-term design.
 
-Expect rough edges.
+The project now uses a cleaner implementation in the **main branch**.
 
-## Important: I Use AMDGPU
+## Use the Main Branch Instead
 
-My personal system uses an **AMD GPU with `amdgpu`**.
+You should **not use this branch for new installations**.
 
-Because of that, the AMD configuration is what I actually use and test on my own hardware.
+GPU support is now included directly in the main configuration.
 
-I do **not** currently have NVIDIA hardware available for properly testing every NVIDIA configuration, driver branch, kernel combination, or GPU generation included here.
+Instead of switching Git branches depending on your GPU, users can select the
+appropriate GPU profile in their NixOS configuration.
 
-That means NVIDIA support is largely based on NixOS configuration, documentation, expected driver compatibility, and feedback from people who actually have NVIDIA hardware.
+For example:
 
-So please do not assume that a configuration being present here means it has been thoroughly tested.
+```nix
+nixpii.gpu.profile = "nvidia";
+```
 
-## This Is NOT the Main Branch
+Other available profiles include:
 
-Again:
+```nix
+nixpii.gpu.profile = "generic";
+nixpii.gpu.profile = "amd";
+nixpii.gpu.profile = "nvidia";
+nixpii.gpu.profile = "nvidia-10series";
+nixpii.gpu.profile = "nvidia-legacy";
+nixpii.gpu.profile = "nouveau";
+```
 
-**This is not the main branch.**
+This means:
 
-If you want the normal/default configuration, use the main branch.
+```text
+main contains all supported GPU implementations
+            ↓
+the user selects the appropriate GPU profile
+```
 
-The NVIDIA branch is currently intended for:
+rather than:
 
-* Testing
-* Development
-* Experimentation
-* NVIDIA compatibility work
-* People willing to report breakage
+```text
+AMD user    -> AMD branch
+NVIDIA user -> NVIDIA branch
+```
 
-If you need something that is known to be stable, this branch probably is not what you want yet.
+This is easier to maintain, easier to test, and much less confusing for users.
 
-## Current NVIDIA Specialisations
+## Why This Branch Was Archived
 
-The configuration currently aims to provide several NVIDIA boot options.
+The original NVIDIA implementation relied heavily on NixOS specialisations.
+
+The system could provide multiple boot options such as:
+
+```text
+AMD base configuration
+NVIDIA modern specialisation
+NVIDIA 10-series specialisation
+NVIDIA legacy specialisation
+Nouveau specialisation
+```
+
+While this was useful for experimentation, it also caused the system closure and
+resulting disk images to become significantly larger.
+
+The new implementation allows normal users to select **one GPU profile**
+instead.
+
+Optional multi-GPU specialisations still exist in the main branch for users who
+actually want them, but they are no longer the default design.
+
+## Historical NVIDIA Configurations
+
+This branch contained the following NVIDIA configurations.
 
 ### `nvidia`
 
-For newer NVIDIA GPUs, primarily **Turing and newer**.
+For newer NVIDIA GPUs, primarily Turing and newer.
 
-Uses the NVIDIA Open kernel modules where supported.
+Used the NVIDIA Open kernel modules where supported.
 
 ### `nvidia-10series`
 
 Intended for NVIDIA GTX 10-series / Pascal hardware.
 
-Uses the proprietary NVIDIA driver rather than the open kernel modules.
+Used the proprietary NVIDIA driver instead of the open kernel modules.
 
 ### `nvidia-legacy`
 
-Intended for older NVIDIA GPUs requiring the legacy driver branch, particularly Kepler-era hardware.
+Intended for older NVIDIA GPUs requiring a legacy NVIDIA driver branch.
 
 ### `nvidia-nouveau`
 
 A fallback configuration using the open-source Nouveau driver.
 
-This is primarily intended for recovery, troubleshooting, and basic fallback use.
+This was primarily intended for recovery, troubleshooting, and basic fallback
+use.
 
-It is **not intended to be the recommended daily-driver configuration**.
+## Hardware Testing
 
-## Testing
+My personal system uses an **AMD GPU with `amdgpu`**.
 
-Please test changes before actually booting into them.
+Because of that, NVIDIA support has never had the same level of direct hardware
+testing as the AMD configuration.
 
-For example:
+The NVIDIA configuration was developed using:
 
-```bash
-sudo nixos-rebuild build --show-trace
-```
+- NixOS configuration and module behavior
+- NVIDIA and NixOS documentation
+- expected driver compatibility
+- build and evaluation testing
+- feedback from users with NVIDIA hardware
 
-For flakes:
+That remains important context when looking through the history of this branch.
 
-```bash
-sudo nixos-rebuild build --flake .#YOUR_HOSTNAME --show-trace
-```
+## Issues and Pull Requests
 
-If the build succeeds, it is generally safer to install the configuration for the next boot:
+Please do **not** report new NVIDIA problems against this archived
+implementation unless the issue is specifically about its historical behavior.
 
-```bash
-sudo nixos-rebuild boot --flake .#YOUR_HOSTNAME --show-trace
-```
+For current NVIDIA support, use the implementation from the **main branch**.
 
-Then reboot and select the appropriate NVIDIA specialisation from the bootloader.
+If you encounter a problem there, please open an issue against the current
+configuration and include useful information such as:
 
-Do not assume that a successful evaluation guarantees that the NVIDIA driver will work correctly on your particular GPU.
+- GPU model
+- NVIDIA generation
+- NixOS version
+- Kernel version
+- NVIDIA driver version
+- Selected GPU profile
+- Relevant error messages
+- `nixos-rebuild` output
+- Relevant `journalctl` or kernel logs
+- Whether Wayland or X11 is being used
+- Any local configuration changes
 
-## Found a Problem?
-
-Please **open an issue**.
-
-Seriously.
-
-If you are using NVIDIA hardware and something is broken, your issue report is useful because I cannot reproduce every NVIDIA-specific problem on my AMD system.
-
-When opening an issue, please include as much of the following as possible:
-
-* GPU model
-* NVIDIA generation, if known
-* NixOS version/channel
-* Kernel version
-* NVIDIA driver version
-* Specialisation used
-* Relevant error messages
-* Output from `nixos-rebuild` if the build failed
-* Relevant `journalctl` or kernel logs if the system booted incorrectly
-* Whether Wayland or X11 is being used
-* Any changes you made to the configuration
-
-Please include logs as text or in a code block where possible.
-
-## Will It Be Fixed?
-
-Probably.
-
-But **not necessarily immediately**.
-
-This branch is currently secondary to the main AMD configuration, since AMDGPU is what I personally use.
-
-If you open an issue, I will try to investigate it and fix it.
-
-It may just happen **later on** rather than immediately.
-
-Please do not interpret a slow response as the NVIDIA branch being abandoned. It is simply a lower-priority, hardware-dependent part of the project at the moment.
-
-Pull requests are also welcome if you have NVIDIA hardware and know how to fix something.
+Pull requests improving the current GPU implementation are also welcome.
 
 ## Here Be Dragons
 
-The NVIDIA configurations are experimental.
+This branch contains experimental and historical NVIDIA work.
 
 Different combinations of:
 
-* GPU generation
-* Kernel version
-* NVIDIA driver branch
-* Open vs proprietary kernel modules
-* Wayland
-* X11
-* Hybrid graphics
-* Firmware
-* NixOS/nixpkgs revisions
+- GPU generation
+- Kernel version
+- NVIDIA driver branch
+- Open vs proprietary kernel modules
+- Wayland
+- X11
+- Hybrid graphics
+- Firmware
+- NixOS/nixpkgs revisions
 
-can produce very different results.
+can behave very differently.
 
-If you're using one of the older NVIDIA specialisations in particular:
+If you are browsing this branch for reference, especially the older NVIDIA
+configurations:
 
 **Here be dragons.**
 
-Please have a known-good boot entry available before experimenting.
+Do not assume that code in this branch represents the current recommended
+configuration.
 
 ## Status
 
-**WIP**
+**Archived**
 
-NVIDIA:
+This branch is:
 
-**Experimental / community testing needed**
+- No longer under active development
+- No longer the recommended NVIDIA installation method
+- Preserved for historical reference
+- Superseded by the GPU profile implementation in `main`
 
-Nouveau:
-
-**Fallback / troubleshooting**
-
-This will become more polished as NVIDIA support gets more testing and real-world feedback.
-
-Until then, expect changes.
+For current NVIDIA support, use the **main branch** and select the appropriate
+GPU profile.
