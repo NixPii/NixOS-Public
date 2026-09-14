@@ -31,14 +31,5 @@
 
     rocm.overrideGfx = "11.0.0";
   };
-
-  virtualisation.vmVariant = {
-    virtualisation = {
-      memorySize = 4096;
-      cores = 4;
-
-      qemu.options = ["-vga none -device virtio-gpu-pci"];
-    };
-  };
   system.stateVersion = "25.11"; # Did you read the comment?
 }
