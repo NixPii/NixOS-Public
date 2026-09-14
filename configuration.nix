@@ -13,6 +13,7 @@
     ./system/default.nix
     ./modules/gpu.nix
     ./modules/ai.nix
+    ./modules/bootloader.nix
     ./programs/default.nix
     ./users/default.nix
     ./extra/default.nix
@@ -30,6 +31,11 @@
     acceleration = "rocm";
 
     rocm.overrideGfx = "11.0.0";
+  };
+
+  nixpii.bootloader = {
+    grub_minimal.enable = true;
+    limine.enable = false;
   };
   system.stateVersion = "25.11"; # Did you read the comment?
 }

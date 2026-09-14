@@ -28,7 +28,7 @@ in {
     {
       assertions = [
         {
-          assertion = !(cfg.grub.enable && cfg.limine.enable);
+          assertion = !(cfg.grub_minimal.enable && cfg.limine.enable);
           message = "GRUB and Limine cannot both be enabled.";
         }
       ];
