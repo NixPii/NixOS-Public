@@ -14,6 +14,7 @@
     ./modules/gpu.nix
     ./modules/ai.nix
     ./modules/bootloader.nix
+    ./modules/virt.nix
     ./programs/default.nix
     ./users/default.nix
     ./extra/default.nix
@@ -36,6 +37,11 @@
   nixpii.bootloader = {
     grub_minimal.enable = true;
     limine.enable = false;
+  };
+
+  nixpii.virt = {
+    qemu_minimal.enable = false;
+    qemu_full.enable = false;
   };
   system.stateVersion = "25.11"; # Did you read the comment?
 }

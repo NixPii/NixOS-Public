@@ -6,34 +6,9 @@
 }: {
   boot = {
     # GRUB
-    loader = {
-      grub = {
-        enable = true;
-        device = "nodev";
-        efiSupport = true;
-        useOSProber = false;
-        copyKernels = true;
-        memtest86.enable = false;
-
-        theme = pkgs.catppuccin-grub.override {
-          flavor = "frappe"; # latte, frappe, macchiato, mocha
-        };
-      };
-      #efi.canTouchEfiVariables = true;
-      #efi.efiSysMountPoint = "/boot";
-    }; # End of GRUB
-
-    plymouth = {
-      enable = true;
-      theme = "blahaj";
-      themePackages = [
-        pkgs.plymouth-blahaj-theme
-      ];
-    };
-
     # Enable "Silent boot"
     consoleLogLevel = 3;
-    initrd.verbose = false;
+    initrd.verbose = true;
 
     # Kernel
     kernelPackages = lib.mkDefault pkgs.linuxPackages_testing;

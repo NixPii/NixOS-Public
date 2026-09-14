@@ -3,12 +3,13 @@
 > [!WARNING]
 > **This is the `testing` branch.**
 >
-> It is used for active development, refactors, package changes, hardware work,
-> and experiments before they are considered stable enough to be merged into
-> `main`.
+> It is used for active, and fast development, refactors, package changes,
+> hardware work, and experiments before they are considered stable enough to be
+> merged into `main`.
 >
 > If you want the recommended version of this configuration, use the **`main`
-> branch** instead.
+> branch** instead. This branch is considered by the developer to be very
+> unstable
 
 ## What Is This Branch?
 
@@ -31,6 +32,7 @@ That includes things such as:
 - experimental configuration
 - large dependency changes
 - VM testing changes
+- New experimental Modules
 
 The general development flow is:
 
@@ -47,15 +49,15 @@ new change
     └── fix problems
     │
     ▼
-stable enough
+stable enough / ready to release
     │
     ▼
   main
 ```
 
-`testing` is expected to move faster than `main`.
+`testing` is expected to move much faster than `main`.
 
-That also means it may break.
+That also means it will break.
 
 ## Use `main` for Normal Installations
 
@@ -77,6 +79,7 @@ The `testing` branch may contain:
 - broken builds
 - hardware changes that have not been tested widely
 - commits that may be rewritten or replaced before reaching `main`
+- Modules not ready for production enviroments
 
 If you do not specifically want to help test upcoming changes, you probably want
 `main`.
