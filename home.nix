@@ -84,20 +84,6 @@
       # Main Nix things
       rebuild = "nh os switch";
       test = "nh os test";
-      nix-rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#nixie";
-      nix-test = "sudo nixos-rebuild test --flake /etc/nixos#nixie";
-
-      # Git
-      git-commit = "pushd /etc/nixos && git add . &&  git commit -m 'update' && popd";
-      github-push = "pushd /etc/nixos && git add . && git commit -m 'Github push' && git push -u origin main && popd";
-      gpush = "cd ~/.nixos && git add -u && git add .gitignore && echo -n 'Enter commit message: ' && read msg && git commit -m \"$msg\" && git push origin main";
-
-      # Flake based things
-      flake-update = "pushd /etc/nixos && sudo nix flake update && popd";
-      update = "nh os switch --update";
-      fullupdate = "flatpak update && nh os switch --update ";
-      nix-update = "pushd /etc/nixos && sudo nix flake update && sudo nixos-rebuild switch --flake .#nixie && popd";
-      fullupdate-nix = "flatpak update && pushd /etc/nixos && sudo nix flake update && sudo nixos-rebuild switch --flake .#nixie && popd";
 
       # Garbage collection
       garbage-collect = "nix-collect-garbage --delete-older-than 7d";
@@ -114,13 +100,6 @@
       c = "clear";
       v = "nvim";
       vim = "nvim";
-
-      # My BS
-      togif = "/home/nixpii/Documents/scripts/to_gif.sh";
-      togames = "/home/nixpii/Documents/scripts/to-games.sh";
-      download-memes = "/home/nixpii/Documents/scripts/go/to-memes";
-      yt-mp4 = "/home/nixpii/Documents/scripts/yt-mpx.sh 4 ";
-      yt-mp3 = "/home/nixpii/Documents/scripts/yt-mpx.sh 3 ";
     };
 
     oh-my-zsh = {

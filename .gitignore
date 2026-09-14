@@ -24,3 +24,4 @@ git.nix
 
 # --- Nonsense to add --- 
 system/hardware.nix.back
+README.md.main
