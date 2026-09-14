@@ -5,6 +5,7 @@ result-*
 secrets.nix
 home/git.nix
 
+
 # --- Backups / temp ---
 backup/
 *.bak
@@ -22,3 +23,5 @@ git.nix
 
 /private
 
+# --- Nonsense to add --- 
+system/hardware.nix.back
