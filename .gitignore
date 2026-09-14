@@ -22,3 +22,5 @@ git.nix
 
 /private
 
+# --- Nonsense to add --- 
+system/hardware.nix.back

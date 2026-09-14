@@ -18,7 +18,7 @@
   services.spice-autorandr.enable = true;
   services.spice-vdagentd.enable = true;
   services.spice-webdavd.enable = true;
-  services.smartd.enable = true;
+  services.smartd.enable = false;
   services.flatpak.enable = true;
   services.blueman.enable = true;
   security.polkit.enable = true;

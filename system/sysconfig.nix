@@ -13,7 +13,7 @@
         efiSupport = true;
         useOSProber = false;
         copyKernels = true;
-        memtest86.enable = true;
+        memtest86.enable = false;
 
         theme = pkgs.catppuccin-grub.override {
           flavor = "frappe"; # latte, frappe, macchiato, mocha
@@ -39,21 +39,15 @@
     kernelPackages = lib.mkDefault pkgs.linuxPackages_testing;
 
     kernelParams = [
-      "quiet"
-      "amd_pstate=disable"
       "splash"
       "udev.log_level=3"
       "systemd.show_status=auto"
       "boot.shell_on_fail"
-      "video=DP-1:2560x1440@170" # Why was this 60?
-      "video=DP-2:1920x1080@60"
     ];
   };
 
   boot.loader.systemd-boot.enable = false;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  powerManagement.cpuFreqGovernor = "performance";
 
   networking.hostName = "nixie"; # Define your hostname.
   networking.networkmanager = {
@@ -96,25 +90,6 @@
       "hu_HU.UTF-8/UTF-8"
       "de_DE.UTF-8/UTF-8"
       "pl_PL.UTF-8/UTF-8"
-
-      # Purely anti-malware
-      "ru_RU.UTF-8/UTF-8" # Russia
-      "be_BY.UTF-8/UTF-8" # Belarus
-      "kk_KZ.UTF-8/UTF-8" # Kazakhstan
-      "uz_UZ.UTF-8/UTF-8" # Uzbekistan
-      "tg_TJ.UTF-8/UTF-8" # Tajikistan
-      "ar_SY.UTF-8/UTF-8" # Syria
-      "zh_CN.UTF-8/UTF-8" # China
-      "pt_BR.UTF-8/UTF-8" # Brazil
-
-      # Explicitly fixed for glibc's strict upstream layout
-      "az_AZ/UTF-8" # Azerbaijan
-      "en_IN/UTF-8" # India (English)
-      "hi_IN/UTF-8" # India (Hindi)
-      "hy_AM/UTF-8" # Armenia
-      "ky_KG/UTF-8" # Kyrgyzstan
-      "ro_RO.UTF-8/UTF-8" # Romania / Moldova coverage
-      "vi_VN/UTF-8" # Vietnam
     ];
   };
 
@@ -124,10 +99,6 @@
     auto-optimise-store = true;
     max-jobs = "auto";
     cores = 16;
-    # trusted-users = ["root" "remotebuild"];
-
-    #substituters = [ "https://attic.xuyh0120.win/lantian" ];
-    #trusted-public-keys = [ "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc=" ];
   };
 
   time.timeZone = "Europe/Budapest";
@@ -142,19 +113,6 @@
   environment.etc.hosts.enable = true;
   security.pam.services.swaylock = {};
   security.sudo.wheelNeedsPassword = false;
-
-  systemd.tmpfiles.rules = let
-    rocmEnv = pkgs.symlinkJoin {
-      name = "rocm-combined";
-      paths = with pkgs.rocmPackages; [
-        rocblas
-        hipblas
-        clr
-      ];
-    };
-  in [
-    "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
-  ];
 
   # Auto updates
   system.autoUpgrade.enable = true;
