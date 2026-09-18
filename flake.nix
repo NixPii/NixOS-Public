@@ -51,10 +51,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Flatpak
-    nix-flatpak = {
-      url = "github:gmodena/nix-flatpak/?ref=latest";
-    };
+    # Flatpak, new solution, fully declerative
+    flatpaks.url = "github:in-a-dil-emma/declarative-flatpak/latest";
   };
 
   outputs = inputs @ {
@@ -65,7 +63,7 @@
     nvf,
     catppuccin,
     ratbag-git,
-    nix-flatpak,
+    flatpaks,
     ...
   }: let
     system = "x86_64-linux";
@@ -81,13 +79,14 @@
       };
 
       modules = [
-        nix-flatpak.nixosModules.nix-flatpak
+        ./programs/flatpak-sys.nix
         ./configuration.nix
         ./users/noctalia.nix
 
         catppuccin.nixosModules.catppuccin
         home-manager.nixosModules.home-manager
         nvf.nixosModules.default
+        flatpaks.nixosModules.default
 
         {
           # Inlined home-manager config
@@ -99,7 +98,7 @@
                 ./home/flatpak.nix
                 ./home.nix
                 catppuccin.homeModules.catppuccin
-                nix-flatpak.homeManagerModules.nix-flatpak
+                flatpaks.homeModules.default
               ];
             };
             extraSpecialArgs = {inherit inputs;};
