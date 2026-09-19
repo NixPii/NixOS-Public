@@ -9,7 +9,7 @@
 >
 > If you want the recommended version of this configuration, use the **`main`
 > branch** instead. This branch is considered by the developer to be very
-> unstable
+> unstable.
 
 ## What Is This Branch?
 
@@ -32,7 +32,7 @@ That includes things such as:
 - experimental configuration
 - large dependency changes
 - VM testing changes
-- New experimental Modules
+- new experimental modules
 
 The general development flow is:
 
@@ -59,6 +59,60 @@ stable enough / ready to release
 
 That also means it will break.
 
+## About This Flake
+
+NixPii is intended to be an **all-in-one NixOS flake**.
+
+It includes a large collection of software, services, and configuration for
+different use cases, including:
+
+- development resources
+- gaming resources
+- multiple selectable GPU configurations
+- AI / Ollama support
+- Home Manager configuration
+- desktop applications
+- virtualization
+- hardware configuration
+- system services
+- experimental modules
+- **Niri** as a scrolling tiling window manager / Wayland compositor
+
+Because this flake includes significantly more than a minimal NixOS
+configuration, the hardware and storage requirements are also higher.
+
+## Requirements
+
+The current minimum recommended requirements for NixPii are:
+
+- **12 GB of RAM**
+- **120 GB of available disk space**
+- **AMD or NVIDIA GPU**
+
+More RAM and disk space may be required depending on which features you enable,
+especially when using:
+
+- local AI models
+- Ollama
+- ROCm
+- CUDA
+- gaming packages
+- development environments
+- virtual machines
+- GPU specialisations
+
+### Integrated GPUs
+
+The creator of this flake currently does not have suitable hardware available
+for properly testing integrated GPUs.
+
+Because of this, **iGPUs are not officially supported at this time**.
+
+They may work, but they are currently considered untested and support cannot be
+guaranteed.
+
+AMD and NVIDIA dedicated GPUs are the primary supported GPU configurations.
+
 ## Use `main` for Normal Installations
 
 For normal use, use:
@@ -79,7 +133,7 @@ The `testing` branch may contain:
 - broken builds
 - hardware changes that have not been tested widely
 - commits that may be rewritten or replaced before reaching `main`
-- Modules not ready for production enviroments
+- Modules not ready for production environments
 
 If you do not specifically want to help test upcoming changes, you probably want
 `main`.
@@ -355,6 +409,7 @@ Changes here may affect:
 - desktop sessions
 - AI acceleration
 - virtualization
+- flake inputs (being added and/or removed)
 
 Keep a known-good NixOS generation available before testing significant changes.
 

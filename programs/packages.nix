@@ -77,7 +77,6 @@
     playerctl
     cliphist
     adwaita-icon-theme
-    xwayland-satellite
     brightnessctl
     fastfetch
     pay-respects
@@ -166,7 +165,6 @@
     img4tool
 
     # Xwayland
-    xwayland-satellite
     xwayland
     wayback-x11
     xeyes

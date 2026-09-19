@@ -45,6 +45,11 @@
       url = "github:SteamClientHomebrew/Millennium?dir=packages/nix"; # Wiki
     };
 
+    # Temporary xwayland-satelite fix
+    nixpkgs-temp = {
+      url = "github:NixOS/nixpkgs/edfd59b795cd752c36d2dae60870cffcd23d3fb1";
+    };
+
     #  Piper-Git and Libratbag-Git (Own repo)
     ratbag-git = {
       url = "git+https://codeberg.org/NixPii/piper-git-nix";
@@ -64,6 +69,7 @@
     catppuccin,
     ratbag-git,
     flatpaks,
+    nixpkgs-temp,
     ...
   }: let
     system = "x86_64-linux";
