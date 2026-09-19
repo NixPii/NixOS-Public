@@ -5,7 +5,7 @@
   inputs,
   ...
 }: let
-  xwayland-fix = import inputs nixpkgs-temp {
+  xwayland-fix = import inputs.nixpkgs-temp {
     system = pkgs.system;
     config.allowUnfree = true;
   };
