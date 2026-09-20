@@ -6,7 +6,7 @@
   ...
 }: let
   xwayland-fix = import inputs.nixpkgs-temp {
-    system = pkgs.system;
+    system = pkgs.stdenv.hostPlatform.system;
     config.allowUnfree = true;
   };
 in {

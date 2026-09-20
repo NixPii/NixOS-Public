@@ -1,7 +1,0 @@
-From NixPii-s testing, this flake requires at least:
-- 120 GiBs of free Space 
-- 16 Gigs of RAM 
-- Time 
-
-This text file will be also expanded, and most likely merged into the README 
-

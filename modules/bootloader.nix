@@ -5,6 +5,11 @@
   ...
 }: let
   cfg = config.nixpii.bootloader;
+  enabledBootloadersCount = lib.count (x: x) [
+    cfg.grub_minimal.enable
+    cfg.grub_full.enable
+    cfg.limine.enable
+  ];
 in {
   options.nixpii.bootloader = {
     grub_minimal.enable = lib.mkEnableOption ''
@@ -22,43 +27,71 @@ in {
     grub_full.enable = lib.mkEnableOption ''
       Enable the full GRUB config, this is currently not used, and it is a remenant. Please DO NOT ENABLE.
     '';
+
+    grub_enable_os_prober.enable = lib.mkEnableOption ''
+      Enable GRUB to use os-prober (default: false)
+    '';
   };
 
   config = lib.mkMerge [
     {
       assertions = [
         {
-          assertion = !(cfg.grub_minimal.enable && cfg.limine.enable);
-          message = "GRUB and Limine cannot both be enabled.";
+          assertion = enabledBootloadersCount < 2;
+          message = "You can only enable one bootloader option at a time (grub_minimal, limine, or grub_full).";
+        }
+        {
+          assertion = !(cfg.grub_minimal.enable && cfg.grub_full.enable);
+          message = "Grub Minimal and Grub Full cannot be both enabled at the same time, we recommend using Grub Full instead";
+        }
+        {
+          assertion = !(cfg.grub_enable_os_prober.enable && cfg.limine.enable);
+          message = "Nice try, but os-prober can't be enabled when limine is enabled, it is strictly a Grub option.";
         }
       ];
     }
 
+    # Grub section
     (lib.mkIf cfg.grub_minimal.enable {
       boot.loader.grub = {
         enable = true;
         device = "nodev";
         efiSupport = true;
-        useOSProber = false;
         copyKernels = true;
         memtest86.enable = false;
-      }; ## TODO: Add grub_minimal and add grub_full to config
-
-      boot.loader.limine.enable = false;
-    })
-
-    (lib.mkIf cfg.limine.enable {
-      boot.loader.limine.enable = true;
-      boot.loader.grub.enable = false;
+      };
     })
 
     (lib.mkIf cfg.grub_full.enable {
-      boot.loader.limine.enable = true;
-      boot.loader.grub.enable = false;
-
-      # TODO: Implement
+      boot = {
+        loader.grub = {
+          enable = true;
+          device = "nodev";
+          efiSupport = true;
+          copyKernels = true;
+          memtest86.enable = true;
+        };
+        loader.limine.enable = false;
+        kernelParams = [
+          "drm.panic_screen=qr_code"
+          "panic=0"
+          "systemd.show_status=auto"
+          "boot.shell_on_fail"
+        ];
+        initrd.systemd.enable = true;
+      };
     })
 
+    (lib.mkIf cfg.grub_enable_os_prober.enable {
+      boot.loader.grub.useOSProber = true;
+    })
+
+    # Limine section
+    (lib.mkIf cfg.limine.enable {
+      boot.loader.limine.enable = true;
+    })
+
+    # Plymouth
     (lib.mkIf cfg.plymouth_config.enable {
       boot.plymouth = {
         enable = true;
@@ -68,5 +101,3 @@ in {
     })
   ];
 }
-# This is a very Work In Progress module, please ignore, this is not even being imported right now, for obvious reasons
-
