@@ -8,17 +8,6 @@
   inputs,
   ...
 }: {
-  imports = [
-    # Include the results of the hardware scan.
-    ./system/default.nix
-    ./modules/gpu.nix
-    ./modules/ai.nix
-    ./programs/default.nix
-    ./users/default.nix
-    ./extra/default.nix
-    ./theme/default.nix
-  ];
-
   # Set this option. TODO: Make this more clear
   nixpii.gpu = {
     profile = "generic";
@@ -32,13 +21,30 @@
     rocm.overrideGfx = "11.0.0";
   };
 
-  virtualisation.vmVariant = {
-    virtualisation = {
-      memorySize = 4096;
-      cores = 4;
-
-      qemu.options = ["-vga none -device virtio-gpu-pci"];
-    };
+  nixpii.bootloader = {
+    grub_minimal.enable = true;
+    limine.enable = false;
+    grub_full.enable = false;
+    grub_enable_os_prober.enable = false;
   };
+
+  nixpii.virt = {
+    qemu_minimal.enable = false;
+    qemu_full.enable = false;
+  };
+
+  # The boring stuff
+  imports = [
+    # Include the results of the hardware scan.
+    ./system/default.nix
+    ./modules/gpu.nix
+    ./modules/ai.nix
+    ./modules/bootloader.nix
+    ./modules/virt.nix
+    ./programs/default.nix
+    ./users/default.nix
+    ./extra/default.nix
+    ./theme/default.nix
+  ];
   system.stateVersion = "25.11"; # Did you read the comment?
 }

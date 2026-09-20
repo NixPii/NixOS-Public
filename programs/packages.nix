@@ -21,7 +21,7 @@
     enable = true;
     clean.enable = false;
     clean.extraArgs = "--keep-since 4d --keep 3";
-    flake = ""; # sets NH_OS_FLAKE variable for you
+    flake = "/home/nixpii/NixOS-Public"; # sets NH_OS_FLAKE variable for you, this config assumes it's in your home
   };
 
   # File Manager
@@ -77,7 +77,6 @@
     playerctl
     cliphist
     adwaita-icon-theme
-    xwayland-satellite
     brightnessctl
     fastfetch
     pay-respects
@@ -166,7 +165,6 @@
     img4tool
 
     # Xwayland
-    xwayland-satellite
     xwayland
     wayback-x11
     xeyes

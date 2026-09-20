@@ -35,6 +35,59 @@ It includes my:
 This is a fairly large configuration because it reflects an actual
 desktop/workstation setup rather than a minimal NixOS example.
 
+## Requirements
+
+NixPii is an **all-in-one NixOS flake** intended to provide a complete
+desktop/workstation environment rather than a minimal NixOS installation.
+
+It includes a large collection of software, services, and configuration for
+different use cases, including:
+
+* development resources and tooling
+* gaming resources
+* multiple selectable GPU configurations
+* AI / Ollama support
+* Home Manager configuration
+* desktop applications
+* virtualization
+* hardware configuration
+* system services
+* **Niri** as a scrolling tiling Wayland compositor / window manager
+
+Because this flake includes significantly more than a minimal NixOS
+configuration, its hardware and storage requirements are also fairly high.
+
+### Minimum Requirements
+
+* **12 GB of RAM**
+* **120 GB of available disk space**
+* **AMD or NVIDIA dedicated GPU**
+
+More RAM and disk space are recommended if you plan to make heavy use of
+features such as:
+
+* local AI models
+* Ollama
+* ROCm or CUDA acceleration
+* gaming
+* development environments
+* virtual machines
+* multiple GPU specialisations
+
+### Integrated GPUs
+
+The creator of this flake does not currently have the hardware required to
+properly test integrated GPUs.
+
+Because of this, **iGPUs are not officially supported at this time**.
+
+They may work through the `generic` GPU profile or the normal NixOS graphics
+stack, but they should currently be considered **untested and unsupported**.
+
+The primary supported hardware configurations are dedicated **AMD and NVIDIA
+GPUs**.
+
+
 ## Branches
 
 ### `main`
@@ -916,3 +969,4 @@ promoted to `main`.
 The old AMD and NVIDIA branches are archives.
 
 **Hardware choice belongs in the configuration, not in the Git branch.**
+

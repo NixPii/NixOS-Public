@@ -6,6 +6,7 @@
 }: {
   boot = {
     # GRUB
+<<<<<<< HEAD
     loader = {
       grub = {
         enable = true;
@@ -31,9 +32,11 @@
       ];
     };
 
+=======
+>>>>>>> testing
     # Enable "Silent boot"
     consoleLogLevel = 3;
-    initrd.verbose = false;
+    initrd.verbose = true;
 
     # Kernel
     kernelPackages = lib.mkDefault pkgs.linuxPackages_testing;
@@ -48,8 +51,6 @@
 
   boot.loader.systemd-boot.enable = false;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  powerManagement.cpuFreqGovernor = "performance";
 
   networking.hostName = "nixie"; # Define your hostname.
   networking.networkmanager = {
@@ -101,10 +102,6 @@
     auto-optimise-store = true;
     max-jobs = "auto";
     cores = 16;
-    # trusted-users = ["root" "remotebuild"];
-
-    #substituters = [ "https://attic.xuyh0120.win/lantian" ];
-    #trusted-public-keys = [ "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc=" ];
   };
 
   time.timeZone = "Europe/Budapest";
