@@ -1,4 +1,4 @@
-T.1.3.2 "Satellite Soup" (Current Testing Version):
+V1.3.2 "Satellite Soup" (Latest):
 - Preparing merge to main
 - Fixed xwayland-satelite being broken by downgrading the version
 - Completely new Flatpak handling via declerative-flatpak
