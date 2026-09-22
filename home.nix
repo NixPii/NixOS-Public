@@ -21,6 +21,7 @@
     ./home/theming.nix
     ./home/home-packages.nix
     ./home/unity.nix
+    "${inputs.private}/home_private.nix"
   ];
 
   programs.bash = {

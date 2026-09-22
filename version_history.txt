@@ -1,7 +1,17 @@
-T1.3.3 "Cuddling Cuttlefish" (Latest Testing):
-- Same as main, nothing yet
+T1.3.4 "Safety Second" (Latest Testing):
+- Modified .gitignore
+- Added support for fully private configuration sections within the config
+- Updated flake.nix for the aforementioned private config changes
+- Updated flake.lock to the latest commits
+- Added a new warning to gpu.nix when the "generic" profile is selected
+- Added new files: private.nix and home_private.nix
+- Added a new README for the private directory
+- Updated music.nix
 
-V1.3.2 "Satellite Soup" (Latest):
+T1.3.3 "Cuddling Cuttlefish":
+- Same as Main. Essentially a mirror of it. 
+
+V1.3.2 "Satellite Soup" (Latest Stable):
 - Preparing merge to main
 - Fixed xwayland-satelite being broken by downgrading the version
 - Completely new Flatpak handling via declerative-flatpak

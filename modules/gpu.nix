@@ -303,6 +303,34 @@ in {
         ];
       })
 
+    # -------------------------------------------------------------------------
+    # Generic GPU configuration warning
+    # -------------------------------------------------------------------------
+
+    (lib.mkIf (
+        cfg.profile
+        == "generic"
+        && !cfg.specialisations.enable
+      ) {
+        warnings = [
+          ''
+            Generic GPU profile is selected.
+
+            The generic profile is intended primarily for virtual machines,
+            test systems, or hardware where no specific GPU configuration is
+            required.
+
+            For a normal installation, select the profile matching your GPU
+            instead.
+
+            For example, modern NVIDIA GPUs based on Turing or newer should use:
+
+            nixpii.gpu.profile = "nvidia";
+
+          ''
+        ];
+      })
+
     # =========================================================================
     # Normal / single-profile mode
     #

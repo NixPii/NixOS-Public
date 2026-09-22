@@ -58,6 +58,11 @@
 
     # Flatpak, new solution, fully declerative
     flatpaks.url = "github:in-a-dil-emma/declarative-flatpak/latest";
+
+    private = {
+      url = "path:./private"; # TODO, please change this, user.
+      flake = false;
+    };
   };
 
   outputs = inputs @ {
@@ -70,6 +75,7 @@
     ratbag-git,
     flatpaks,
     nixpkgs-temp,
+    private,
     ...
   }: let
     system = "x86_64-linux";
