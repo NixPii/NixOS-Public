@@ -1,4 +1,8 @@
-T1.3.4 "Safety Second" (Latest Testing):
+T1.3.5 "Flipping Bits" (Latest Testing): 
+- Removed flatpak handling from flake due to https://github.com/in-a-dil-emma/declarative-flatpak/issues/62
+- Please reinstall all aplications that you have installed via the two files. 
+
+T1.3.4 "Safety Second":
 - Modified .gitignore
 - Added support for fully private configuration sections within the config
 - Updated flake.nix for the aforementioned private config changes
