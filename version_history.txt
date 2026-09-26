@@ -1,6 +1,10 @@
-T1.3.5 "Flipping Bits" (Latest Testing): 
+T1.3.5-1 "Flipping Bits" (Latest Testing): 
 - Removed flatpak handling from flake due to https://github.com/in-a-dil-emma/declarative-flatpak/issues/62
-- Please reinstall all aplications that you have installed via the two files. 
+- Please reinstall all aplications that you have installed via the two files.
+- Introduced refined naming scheme, so we don't have a thousand versions about nothing 
+- Disabled GNOME by default. Planning to move the whole desktop stuff into modules 
+- Pruned configuration.
+- Added new W.I.P module 
 
 T1.3.4 "Safety Second":
 - Modified .gitignore

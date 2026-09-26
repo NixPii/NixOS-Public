@@ -77,9 +77,15 @@
 
   programs.zsh = {
     enable = true;
+    dotDir = config.home.homeDirectory;
     enableCompletion = true;
     syntaxHighlighting.enable = true;
     autosuggestion.enable = true;
+
+    initContent = lib.mkBefore ''
+      export ZSH="${pkgs.oh-my-zsh}/share/oh-my-zsh"
+      fastfetch
+    '';
 
     shellAliases = {
       # Main Nix things
@@ -87,7 +93,7 @@
       test = "nh os test";
 
       # Garbage collection
-      garbage-collect = "nix-collect-garbage --delete-older-than 7d";
+      garbage-collect = "nix-collect-garbage -d";
       garbage-weekly = "nix-collect-garbage --delete-older-than 7d";
       optimise = "nix-store --optimise";
       garbage-collect-all = "nix-collect-garbage -d";
@@ -95,16 +101,18 @@
       # QoL
       ls = "eza --color=always --group-directories-first --icons --hyperlink --show-symlinks";
       la = "eza -al --color=always --group-directories-first --icons --binary --group --hyperlink --show-symlinks";
+      lah = "eza -alh --color=always --group-directories-first --icons --binary --group --hyperlink --show-symlinks";
       ll = "eza -l --color=always --group-directories-first --icons --hyperlink";
       "l." = "eza -ald --color=always --group-directories-first --icons --hyperlink .*";
       lt = "eza -lT --color=always --group-directories-first --icons --binary --group --hyperlink --show-symlinks";
       c = "clear";
       v = "nvim";
       vim = "nvim";
+      emacs = "echo Why?";
     };
 
     oh-my-zsh = {
-      # Oh My ZSH fuckery
+      # Oh My ZSH
       enable = true;
       plugins = [
         "aliases"
@@ -119,9 +127,9 @@
         "docker"
         "docker-compose"
         "dotnet"
+        "dotenv"
         "emoji"
         "fzf"
-        "docker"
         "pyenv"
         "python"
         "sudo"
@@ -142,6 +150,7 @@
         "github"
         "gitignore"
         "git-prompt"
+        "jj"
         "gpg-agent"
         "gradle"
         "history"
@@ -175,28 +184,6 @@
     settings = {
       UITheme = "theme-contrast-dark";
       titlebar = "OnlyOffice";
-    };
-  };
-
-  programs.librewolf = {
-    enable = false;
-    languagePacks = [
-      "en-GB"
-      "de"
-      "hu"
-      "ru"
-      "en-US"
-    ];
-
-    settings = {
-      "webgl.disabled" = false;
-      "webgl.prompt" = true;
-      "middlemouse.paste" = false;
-      "general.autoScroll" = true;
-      "privacy.resistFingerprinting" = true;
-      "privacy.clearOnShutdown.history" = false;
-      "privacy.clearOnShutdown.cookies" = false;
-      "network.cookie.lifetimePolicy" = 0;
     };
   };
 
