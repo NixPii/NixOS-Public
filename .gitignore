@@ -32,5 +32,6 @@ backup/
 # --- Nonsense to add --- 
 system/hardware.nix.back
 README.md.main
+README.md.testing
 
 
