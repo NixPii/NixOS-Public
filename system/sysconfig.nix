@@ -6,7 +6,7 @@
 }: {
   boot = {
     # GRUB
-<<<<<<< HEAD
+
     loader = {
       grub = {
         enable = true;
@@ -32,8 +32,6 @@
       ];
     };
 
-=======
->>>>>>> testing
     # Enable "Silent boot"
     consoleLogLevel = 3;
     initrd.verbose = true;
