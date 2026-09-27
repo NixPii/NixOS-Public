@@ -1,4 +1,11 @@
-V1.4 "Flippy Floppy Diskette Trophy" (Latest Stable) 
+V1.4-1 (Hotfix) (Latest Stable): 
+- Hotfix for Millenium Steam 
+
+T1.4-1 (Latest Testing) (Hofix): 
+- Hotfix for Millenium Steam 
+
+
+V1.4 "Flippy Floppy Diskette Trophy":
 - Modified .gitignore
 - Added support for fully private configuration sections within the config
 - Updated flake.nix for the aforementioned private config changes
