@@ -1,6 +1,7 @@
 T1.4-1 "Fur Fix Fox" (Latest Testing): 
 - Backported changed from Stable branch 
 - T1.4.X will be a hotfix and optimisation update, don't expect new features or modules 
+- Developer highly recomends using V1.4-2, the T (testing) branch will be very unstable 
 
 V1.4-2 (Hotfix) (Latest Stable):
 - Fixed build issue, hopefully it works now :D 
@@ -28,7 +29,7 @@ V1.4 "Flippy Floppy Diskette Trophy" (Latest Stable)
 T1.3.5-1 "Flipping Bits":
 - Patch, to check if it builds on a VM, if it does. We will push to main 
 
-T1.3.5 "Flipping Bits" (Latest Stable Testing): 
+T1.3.5 "Flipping Bits": 
 - Removed flatpak handling from flake due to https://github.com/in-a-dil-emma/declarative-flatpak/issues/62
 - Please reinstall all aplications that you have installed via the two files.
 - Introduced refined naming scheme, so we don't have a thousand versions about nothing 
