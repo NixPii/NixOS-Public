@@ -1,3 +1,13 @@
+T1.4-1 "Fur Fix Fox" (Latest Testing): 
+- Backported changed from Stable branch 
+- T1.4.X will be a hotfix and optimisation update, don't expect new features or modules 
+
+V1.4-2 (Hotfix) (Latest Stable):
+- Fixed build issue, hopefully it works now :D 
+
+V1.4-1 (Hotfix): 
+- Hotfix for Millenium Steam 
+
 V1.4 "Flippy Floppy Diskette Trophy" (Latest Stable) 
 - Modified .gitignore
 - Added support for fully private configuration sections within the config
@@ -15,7 +25,7 @@ V1.4 "Flippy Floppy Diskette Trophy" (Latest Stable)
 - Added new W.I.P module
 
 
-T1.3.5-1 "Flipping Bits" (Latest Testing, Same as main):
+T1.3.5-1 "Flipping Bits":
 - Patch, to check if it builds on a VM, if it does. We will push to main 
 
 T1.3.5 "Flipping Bits" (Latest Stable Testing): 

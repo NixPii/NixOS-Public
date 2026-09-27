@@ -17,7 +17,7 @@
       enable = true;
       args = ["-O" "DP-2"];
     };
-    package = pkgs.millennium-steam.override {
+    package = pkgs.steam.override {
       extraProfile = ''
         # Allows Monado/WiVRn to be used
         export PRESSURE_VESSEL_IMPORT_OPENXR_1_RUNTIMES=1

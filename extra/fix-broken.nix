@@ -40,7 +40,7 @@
   # Nautilus extensions
 
   programs.nautilus-open-any-terminal = {
-    enable = true;
+    enable = false;
     terminal = "ghostty";
   };
 
