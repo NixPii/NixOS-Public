@@ -1,4 +1,21 @@
-T1.3.5-1 "Flipping Bits" (Latest Testing):
+V1.4 "Flippy Floppy Diskette Trophy" (Latest Stable) 
+- Modified .gitignore
+- Added support for fully private configuration sections within the config
+- Updated flake.nix for the aforementioned private config changes
+- Updated flake.lock to the latest commits
+- Added a new warning to gpu.nix when the "generic" profile is selected
+- Added new files: private.nix and home_private.nix
+- Added a new README for the private directory
+- Updated music.nix
+- Removed flatpak handling from flake due to https://github.com/in-a-dil-emma/declarative-flatpak/issues/62
+- Please reinstall all aplications that you have installed via the two files.
+- Introduced refined naming scheme, so we don't have a thousand versions about nothing 
+- Disabled GNOME by default. Planning to move the whole desktop stuff into modules 
+- Pruned configuration.
+- Added new W.I.P module
+
+
+T1.3.5-1 "Flipping Bits" (Latest Testing, Same as main):
 - Patch, to check if it builds on a VM, if it does. We will push to main 
 
 T1.3.5 "Flipping Bits" (Latest Stable Testing): 
@@ -22,7 +39,7 @@ T1.3.4 "Safety Second":
 T1.3.3 "Cuddling Cuttlefish":
 - Same as Main. Essentially a mirror of it. 
 
-V1.3.2-1 "Satellite Soup" (Latest Stable): 
+V1.3.2-1 "Satellite Soup": 
 - Fixed a few things, so it compiles.
 - This is a little patch, V1.4 will release soon, merged from Testing 
 
