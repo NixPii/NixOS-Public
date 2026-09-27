@@ -27,7 +27,7 @@
   networking.hostName = "nixie"; # Define your hostname.
   networking.networkmanager = {
     enable = true;
-    plugins = [pkgs.networkmanager-openconnect pkgs.networkmanager-openvpn pkgs.networkmanager-vpnc pkgs.networkmanager-l2tp];
+    plugins = [pkgs.networkmanager-openconnect pkgs.networkmanager-openvpn pkgs.networkmanager-libreswan pkgs.networkmanager-l2tp];
   };
   networking.modemmanager.enable = true;
 

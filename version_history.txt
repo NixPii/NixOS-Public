@@ -1,4 +1,7 @@
-T1.3.5-1 "Flipping Bits" (Latest Testing): 
+T1.3.5-1 "Flipping Bits" (Latest Testing):
+- Patch, to check if it builds on a VM, if it does. We will push to main 
+
+T1.3.5 "Flipping Bits" (Latest Stable Testing): 
 - Removed flatpak handling from flake due to https://github.com/in-a-dil-emma/declarative-flatpak/issues/62
 - Please reinstall all aplications that you have installed via the two files.
 - Introduced refined naming scheme, so we don't have a thousand versions about nothing 
@@ -19,7 +22,12 @@ T1.3.4 "Safety Second":
 T1.3.3 "Cuddling Cuttlefish":
 - Same as Main. Essentially a mirror of it. 
 
-V1.3.2 "Satellite Soup" (Latest Stable):
+V1.3.2-1 "Satellite Soup" (Latest Stable): 
+- Fixed a few things, so it compiles.
+- This is a little patch, V1.4 will release soon, merged from Testing 
+
+
+V1.3.2 "Satellite Soup":
 - Preparing merge to main
 - Fixed xwayland-satelite being broken by downgrading the version
 - Completely new Flatpak handling via declerative-flatpak
