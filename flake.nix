@@ -56,8 +56,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Flatpak, new solution, fully declerative
-    flatpaks.url = "github:in-a-dil-emma/declarative-flatpak/latest";
+    private = {
+      url = "path:./private"; # TODO, please change this, user.
+      flake = false;
+    };
   };
 
   outputs = inputs @ {
@@ -68,8 +70,8 @@
     nvf,
     catppuccin,
     ratbag-git,
-    flatpaks,
     nixpkgs-temp,
+    private,
     ...
   }: let
     system = "x86_64-linux";
@@ -85,14 +87,14 @@
       };
 
       modules = [
-        ./programs/flatpak-sys.nix
+        # ./programs/flatpak-sys.nix
+        # Removed, check version logs
         ./configuration.nix
         ./users/noctalia.nix
 
         catppuccin.nixosModules.catppuccin
         home-manager.nixosModules.home-manager
         nvf.nixosModules.default
-        flatpaks.nixosModules.default
 
         {
           # Inlined home-manager config
@@ -101,10 +103,10 @@
             useUserPackages = true;
             users.nixpii = {
               imports = [
-                ./home/flatpak.nix
+                # ./home/flatpak.nix
+                # Removed, check version logs
                 ./home.nix
                 catppuccin.homeModules.catppuccin
-                flatpaks.homeModules.default
               ];
             };
             extraSpecialArgs = {inherit inputs;};

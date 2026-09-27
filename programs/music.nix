@@ -7,7 +7,6 @@
 }: let
   spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 in {
-
   imports = [
     inputs.spicetify-nix.nixosModules.spicetify
   ];
@@ -32,7 +31,6 @@ in {
       trashbin
       webnowplaying
       powerBar
-      betterGenres
       volumePercentage
       sectionMarker
       beautifulLyrics
@@ -52,7 +50,6 @@ in {
       skipStats
       phraseToPlaylist
       copyLyrics
-
     ];
   };
 }

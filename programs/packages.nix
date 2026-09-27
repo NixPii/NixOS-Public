@@ -355,16 +355,6 @@
     ];
   };
 
-  programs.zsh = {
-    enable = true;
-    promptInit = ''
-      eval "$(pay-respects zsh --alias)"
-      fastfetch
-    '';
-  };
+  programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
-  programs.zsh.autosuggestions = {
-    enable = true;
-    async = true;
-  };
 }

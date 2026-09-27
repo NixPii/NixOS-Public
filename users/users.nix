@@ -18,4 +18,8 @@
     description = "nixpii";
     shell = pkgs.zsh;
   };
+
+  users.users.root = {
+    shell = pkgs.bash;
+  };
 }

@@ -32,13 +32,15 @@
   programs.niri.enable = true;
 
   # Desktop Manager
+  # TODO: Move to modules
   services.desktopManager = {
     plasma6.enable = true; # Plasma 6
     cosmic.enable = false; # Cosmic
-    gnome.enable = true; # GNOME
+    gnome.enable = false; # GNOME
   };
 
   services.gnome = {
+    # GNOME Settings to use with Niri
     # GNOME Settings
     core-apps.enable = true; # Gnome Core Apps
     core-developer-tools.enable = true; # Gnome Dev Tools
@@ -52,7 +54,6 @@
   # Window Managers (X11)
   services.xserver = {
     enable = true;
-    videoDrivers = ["amdgpu"];
     xkb.layout = "hu";
     windowManager = {
       twm.enable = true;
@@ -64,10 +65,6 @@
   # Tailscale
   services.tailscale.enable = true;
   services.tailscale.extraDaemonFlags = ["--no-logs-no-support"];
-
-  # Printing
-  services.printing.enable = true;
-  services.printing.drivers = [pkgs.epson-escpr2];
 
   services.udev.packages = [pkgs.yubikey-personalization pkgs.slimevr];
 
@@ -121,9 +118,6 @@
     };
   };
 
-  # Console :3
-  console.keyMap = "hu";
-
   # VR
   services.wivrn = {
     enable = true;
@@ -144,14 +138,6 @@
 
   # Matrix web  server
   services.nginx.enable = true;
-
-  # OpenRGB
-  services.hardware.openrgb = {
-    enable = true;
-    package = pkgs.openrgb-with-all-plugins;
-    motherboard = "amd";
-    server.port = 6742;
-  };
 
   # Automation
   programs.ydotool.enable = true;

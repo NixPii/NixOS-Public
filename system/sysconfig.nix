@@ -53,7 +53,7 @@
   networking.hostName = "nixie"; # Define your hostname.
   networking.networkmanager = {
     enable = true;
-    plugins = [pkgs.networkmanager-openconnect pkgs.networkmanager-openvpn pkgs.networkmanager-vpnc pkgs.networkmanager-l2tp];
+    plugins = [pkgs.networkmanager-openconnect pkgs.networkmanager-openvpn pkgs.networkmanager-libreswan pkgs.networkmanager-l2tp];
   };
   networking.modemmanager.enable = true;
 
@@ -131,24 +131,6 @@
   '';
 
   services.udev.packages = with pkgs; [oversteer liquidctl];
-  services.udev.extraRules = ''
-    SUBSYSTEM=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c261", ACTION=="add", ATTR{authorized}="1"
-    KERNEL=="hiddev*", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c262", MODE="0660", GROUP="users"
-    ATTR{idVendor}=="046d", ATTR{idProduct}=="c261", RUN+="${pkgs.usb-modeswitch}/bin/usb_modeswitch -c /etc/usb_modeswitch.d/046d:c261"
-    ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c261", RUN+="${pkgs.usb-modeswitch}/bin/usb_modeswitch -v 046d -p c261 -m 01 -r 01 -C 03 -M '0f00010142'"
-  '';
-
-  environment.etc."usb_modeswitch.d/046d:c261" = {
-    text = ''
-      # Logitech G920 Racing Wheel
-      DefaultVendor=046d
-      DefaultProduct=c261
-      MessageEndpoint=01
-      ResponseEndpoint=01
-      TargetClass=0x03
-      MessageContent="0f00010142"
-    '';
-  };
 
   environment.variables.EDITOR = "nvim";
 }

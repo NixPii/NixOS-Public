@@ -2,8 +2,6 @@
 result
 result-*
 
-secrets.nix
-home/git.nix
 
 # --- Backups / temp ---
 backup/
@@ -12,16 +10,27 @@ backup/
 *.swp
 *.sh
 
-# --- Misc generated ---
-*.dur
 
 # --- OS junk ---
 .DS_Store
-git.nix
-/home/git.nix
 
-/private
+
+/private/*
+
+!/private/private.nix
+!/private/home_private.nix
+!/private/README.md
+
+!/private/home/
+/private/home/*
+!/private/home/.gitkeep
+
+!/private/nix/
+/private/nix/*
+!/private/nix/.gitkeep
 
 # --- Nonsense to add --- 
 system/hardware.nix.back
 README.md.main
+
+
