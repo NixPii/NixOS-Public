@@ -31,9 +31,6 @@
 
   environment.pathsToLink = ["share/thumbnailers"];
 
-  # Niri & LACT work around, suspect: libdisplay-info update 3.0 -> 4.0
-  services.lact.package = nixpkgs-stable.lact;
-
   # Niri messing  up stuff :/
   services.displayManager.defaultSession = lib.mkForce "niri";
 
@@ -46,6 +43,6 @@
 
   environment.systemPackages = with pkgs; [
     nautilus
-    nixpkgs-stable.gearlever
+    gearlever
   ];
 }

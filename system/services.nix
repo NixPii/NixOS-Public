@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  nixpkgs-stable,
   ...
 }: {
   services.libinput.enable = true;
@@ -126,7 +125,6 @@
     highPriority = true;
     steam.enable = true;
     steam.importOXRRuntimes = true;
-    package = nixpkgs-stable.wivrn;
   };
 
   services.avahi = {

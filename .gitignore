@@ -15,6 +15,7 @@ backup/
 .DS_Store
 
 
+# Private Stuff for Users
 /private/*
 
 !/private/private.nix
@@ -34,4 +35,7 @@ system/hardware.nix.back
 README.md.main
 README.md.testing
 
+# VM Testing
+*.qcow2
+vm_test.nix
 

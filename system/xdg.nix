@@ -4,14 +4,9 @@
   pkgs,
   inputs,
   ...
-}: let
-  xwayland-fix = import inputs.nixpkgs-temp {
-    system = pkgs.stdenv.hostPlatform.system;
-    config.allowUnfree = true;
-  };
-in {
+}: {
   environment.systemPackages = with pkgs; [
-    xwayland-fix.xwayland-satellite
+    xwayland-satellite
   ];
 
   xdg.portal = {

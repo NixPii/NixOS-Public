@@ -40,6 +40,8 @@
     qemu_full.enable = false; # Full QEMU config.
   };
 
+  nixpii.vr.meta.vr.enable = false;
+
   # The boring stuff
   imports = [
     # Include the results of the hardware scan.
@@ -48,6 +50,7 @@
     ./modules/ai.nix
     ./modules/bootloader.nix
     ./modules/virt.nix
+    ./modules/vr.nix
     ./programs/default.nix
     ./users/default.nix
     ./extra/default.nix

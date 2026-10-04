@@ -105,7 +105,6 @@
     ghostscript
     quickemu
     libnotify
-    sidequest
     proton-vpn-cli
     libsecret
     wireguard-tools

@@ -13,10 +13,6 @@
     enable = true;
     remotePlay.openFirewall = true;
     protontricks.enable = true;
-    gamescopeSession = {
-      enable = true;
-      args = ["-O" "DP-2"];
-    };
     package = pkgs.steam.override {
       extraProfile = ''
         # Allows Monado/WiVRn to be used
@@ -58,10 +54,6 @@
     protontricks
     protonplus
     (bottles.override {removeWarningPopup = true;})
-
-    # Vr
-    nixpkgs-stable.wayvr
-    slimevr
 
     # Wine
     wineWow64Packages.stagingFull
