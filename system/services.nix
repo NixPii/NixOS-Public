@@ -117,16 +117,6 @@
     };
   };
 
-  # VR
-  services.wivrn = {
-    enable = true;
-    openFirewall = true;
-    autoStart = true;
-    highPriority = true;
-    steam.enable = true;
-    steam.importOXRRuntimes = true;
-  };
-
   services.avahi = {
     enable = true;
     nssmdns4 = true;

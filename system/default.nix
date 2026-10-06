@@ -1,5 +1,5 @@
 # ~/.nixos/system/default.nix
-{...}: {
+{ ... }: {
   imports = [
     ./sysconfig.nix
     ./services.nix

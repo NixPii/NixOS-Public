@@ -1,18 +1,29 @@
+Note from the developer:
+Unfortunately, due to Mental Health & School struggles, the developer needs to slown 
+down with the development of this flake :/ 
+I am unfortunately just one person, I do not have a team to manage this 
+Updates might come out slower, please be patient!
+Thank you for understanding!
+
+T1.4.3. "The Slim down update Part 3" 
+- Moved Alcom to a new file. 
+- Added new module (Needs Documentation)
+
+T1.4.2 "VR & Slim update, Part 2"
+- These names are getting redicilously long 
+- Also fixed services.nix so it doesn't import VR automatically 
+- Also slimmed down nix-ld
+- Slimmed down gaming.nix 
+- Removed (Latest Testing), becuase it was kinda stupid 
+- Note Moved up to top
+
 T1.4.1 "The VR Update, Part 1": 
 - Updated flake
 - Moved all stuff to follow NixPkgs Unstable, the stable builds break stuff
 - Moved all the VR stuff into a custom seperated modules/vr.nix 
 - Removed some obselete system-specific code 
 
-Note from the developer:
-Unfortunately, due to Mental Health & School struggles, the developer needs to slown 
-down with the development of this flake :/ 
-I am unfortunately just one person, I do not have a team to manage this 
-Updates might come out slower, please be patient!
-
-Thank you for understanding!
-
-T1.4-1 "Fur Fix Fox" (Latest Testing): 
+T1.4-1 "Fur Fix Fox": 
 - Backported changed from Stable branch 
 - T1.4.X will be a hotfix and optimisation update, don't expect new features or modules 
 - Developer highly recomends using V1.4-2, the T (testing) branch will be very unstable 

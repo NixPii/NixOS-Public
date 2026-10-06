@@ -4,7 +4,8 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   home.username = "nixpii";
   home.homeDirectory = "/home/nixpii";
   home.stateVersion = "26.05";
@@ -20,7 +21,7 @@
   imports = [
     ./home/theming.nix
     ./home/home-packages.nix
-    ./home/unity.nix
+    ./modules/imports/alcom.nix
     "${inputs.private}/home_private.nix"
   ];
 
@@ -235,24 +236,23 @@
     enable = true;
   };
 
-  xdg.configFile."openvr/openvrpaths.vrpath".text = let
-    steam = "${config.xdg.dataHome}/Steam";
-  in
+  xdg.configFile."openvr/openvrpaths.vrpath".text =
+    let
+      steam = "${config.xdg.dataHome}/Steam";
+    in
     builtins.toJSON {
       version = 1;
       jsonid = "vrpathreg";
 
       external_drivers = null;
-      config = ["${steam}/config"];
+      config = [ "${steam}/config" ];
 
-      log = ["${steam}/logs"];
+      log = [ "${steam}/logs" ];
 
       runtime = [
         "${pkgs.opencomposite}/lib/opencomposite"
       ];
     };
-
-  home.packages = with pkgs; [];
 
   xdg.userDirs = {
     enable = true;

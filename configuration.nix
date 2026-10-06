@@ -2,12 +2,10 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 {
-  config,
-  lib,
-  pkgs,
   inputs,
   ...
-}: {
+}:
+{
   # Set this option. TODO: Make this more clear
   nixpii.gpu = {
     profile = "generic"; # either "generic", "amd", "nvidia", "nvidia-10series", "nvidia-legacy" or "nouveau"
@@ -40,7 +38,13 @@
     qemu_full.enable = false; # Full QEMU config.
   };
 
-  nixpii.vr.meta.vr.enable = false;
+  nixpii.system.dev = {
+    alcom.enable = false;
+    unity.enable = false;
+    nvim = "full";
+  };
+
+  nixpii.vr.meta.enable = false;
 
   # The boring stuff
   imports = [
@@ -51,6 +55,7 @@
     ./modules/bootloader.nix
     ./modules/virt.nix
     ./modules/vr.nix
+    ./modules/dev.nix
     ./programs/default.nix
     ./users/default.nix
     ./extra/default.nix

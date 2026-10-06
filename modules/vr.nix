@@ -3,169 +3,104 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.nixpii.vr;
-in {
+in
+{
   options.nixpii.vr = {
-    meta.vr.enable = lib.mkEnableOption ''
+    meta.enable = lib.mkEnableOption ''
       Should we enable Meta Quest 2/3/3S VR support?
     '';
   };
 
   config = lib.mkMerge [
-    (
-      lib.mkIf cfg.meta.vr.enable
-      {
-        services.wivrn = {
-          enable = true;
-          openFirewall = true;
-          autoStart = true;
-          highPriority = true;
-          steam.enable = true;
-          steam.importOXRRuntimes = true;
-        };
+    (lib.mkIf cfg.meta.enable {
+      services.wivrn = {
+        enable = true;
+        openFirewall = true;
+        autoStart = true;
+        highPriority = true;
+        steam.enable = true;
+        steam.importOXRRuntimes = true;
+      };
 
-        environment.systemPackages = [
-          pkgs.wayvr
-          pkgs.slimevr
-        ];
+      environment.systemPackages = [
+        pkgs.wayvr
+        pkgs.slimevr
+      ];
 
-        programs.nix-ld.libraries = with pkgs; [
-          # Default
-          zlib
-          zstd
-          stdenv.cc.cc
-          curl
-          openssl
-          attr
-          libssh
-          bzip2
-          libxml2
-          acl
-          libsodium
-          util-linux
-          xz
-          systemd
+      programs.nix-ld.libraries = with pkgs; [
+        # General runtime / common foreign binary deps
+        stdenv.cc.cc
+        zlib
+        zstd
+        xz
+        bzip2
+        openssl
+        curl
+        glib
+        expat
 
-          # XORG
-          libXcomposite
-          libXtst
-          libXrandr
-          libXext
-          libX11
-          libXfixes
-          libGL
-          libva
-          pipewire
-          libxcb
-          libXdamage
-          libxshmfence
-          libXxf86vm
-          libelf
-          libxcrypt
-          libXinerama
-          libXcursor
-          libXrender
-          libXScrnSaver
-          libXi
-          libSM
-          libICE
-          libXt
-          libXmu
-          libogg
-          libvorbis
-          SDL
-          SDL2_image
-          glew_1_10
-          libidn
-          tbb
-          libXft
-          libvdpau
-          xrizer
+        # Vulkan / OpenGL / DRM
+        vulkan-loader
+        libGL
+        libdrm
+        libgbm
+        libva
 
-          # Required
-          glib
-          gtk2
-          gtk3
+        # Wayland / input
+        wayland
+        libxkbcommon
 
-          # Steam
-          networkmanager
-          vulkan-loader
-          libgbm
-          libdrm
-          coreutils
-          pciutils
-          zenity
-          glibc_multi.bin
+        # X11 / XWayland
+        libX11
+        libXext
+        libXrandr
+        libXfixes
+        libXcursor
+        libXi
+        libXrender
+        libXcomposite
+        libXdamage
+        libXinerama
+        libXxf86vm
+        libxcb
+        libxshmfence
 
-          # Extra
-          dconf
-          nspr
-          nss
-          cups
-          libcap
-          SDL2
-          libusb1
-          dbus-glib
-          ffmpeg
-          libudev0-shim
+        # GUI — useful for launchers, Unity programs, VR utilities, etc.
+        gtk3
+        cairo
+        pango
+        gdk-pixbuf
+        fontconfig
+        freetype
 
-          # needed to run unity
-          gtk3
-          icu
-          libnotify
-          gsettings-desktop-schemas
+        # Audio
+        alsa-lib
+        libpulseaudio
+        pipewire
 
-          # Wiki suggests this, and i want to be thorough
-          flac
-          freeglut
-          libjpeg
-          libpng
-          libpng12
-          libsamplerate
-          libsamplerate
-          libmikmod
-          libtheora
-          libtiff
-          pixman
-          speex
-          SDL_image
-          SDL_ttf
-          SDL_mixer
-          SDL2_ttf
-          SDL2_mixer
-          libcaca
-          libcanberra
-          libgcrypt
-          libvpx
-          librsvg
-          pango
-          cairo
-          atk
-          gdk-pixbuf
-          fontconfig
-          freetype
-          dbus
-          alsa-lib
-          expat
-          libxkbcommon
+        # USB / device access — relevant for VR hardware
+        libusb1
+        systemd # provides libudev
 
-          # AppImages
-          fuse3
-          e2fsprogs
-          gmp
+        # IPC
+        dbus
 
-          # Qt6
-          libpulseaudio
-          krb5
-          libxcb-cursor
-          xcbutilwm
-          xcbutil
-          xcbutilimage
-          xcbutilkeysyms
-          xcbutilrenderutil
-        ];
-      }
-    )
+        # Common multimedia deps
+        ffmpeg
+
+        # SDL is common in games / VR utilities
+        SDL2
+
+        # AppImages
+        fuse3
+
+        # Often needed by Electron/Chromium-ish foreign apps
+        nspr
+        nss
+      ];
+    })
   ];
 }
