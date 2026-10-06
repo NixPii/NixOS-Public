@@ -5,11 +5,11 @@
   ...
 }:
 let
-  cfg = osConfig.nixpii.system.dev.nvim;
+  cfg = config.nixpii.system;
 in
 {
 
-  config = lib.mkIf (cfg == "full") {
+  config = lib.mkIf (cfg.dev.nvim == "full") {
     programs.neovim = {
       enable = true;
       defaultEditor = true;
