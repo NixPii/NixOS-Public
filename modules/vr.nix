@@ -5,10 +5,10 @@
   ...
 }:
 let
-  cfg = config.nixpii.vr;
+  cfg = config.nixpii.system.hardware.vr;
 in
 {
-  options.nixpii.vr = {
+  options.nixpii.system.hardware.vr = {
     meta.enable = lib.mkEnableOption ''
       Should we enable Meta Quest 2/3/3S VR support?
     '';

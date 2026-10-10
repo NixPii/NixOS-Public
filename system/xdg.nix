@@ -1,10 +1,8 @@
 {
-  config,
-  lib,
   pkgs,
-  inputs,
   ...
-}: {
+}:
+{
   environment.systemPackages = with pkgs; [
     xwayland-satellite
   ];
@@ -20,20 +18,20 @@
 
     config = {
       common = {
-        default = ["gtk"];
+        default = [ "gtk" ];
       };
 
       niri = {
         # Niri XDG Config
-        "org.freedesktop.impl.portal.FileChooser" = ["gtk"];
+        "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
       };
 
       kde = {
-        default = ["kde"];
+        default = [ "kde" ];
       };
 
       cosmic = {
-        default = ["cosmic"];
+        default = [ "cosmic" ];
       };
     };
   };

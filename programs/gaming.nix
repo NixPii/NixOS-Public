@@ -1,12 +1,10 @@
 {
-  config,
-  lib,
   pkgs,
-  nixpkgs-stable,
   inputs,
   ...
-}: {
-  nixpkgs.overlays = [inputs.millennium.overlays.default];
+}:
+{
+  nixpkgs.overlays = [ inputs.millennium.overlays.default ];
 
   # Steam
   programs.steam = {
@@ -49,7 +47,7 @@
     vulkan-loader
     protontricks
     protonplus
-    (bottles.override {removeWarningPopup = true;})
+    (bottles.override { removeWarningPopup = true; })
 
     # Wine
     wineWow64Packages.stagingFull

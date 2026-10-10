@@ -3,15 +3,17 @@
   lib,
   pkgs,
   ...
-}: let
-  cfg = config.nixpii.bootloader;
+}:
+let
+  cfg = config.nixpii.system.bootloader;
   enabledBootloadersCount = lib.count (x: x) [
     cfg.grub_minimal.enable
     cfg.grub_full.enable
     cfg.limine.enable
   ];
-in {
-  options.nixpii.bootloader = {
+in
+{
+  options.nixpii.system.bootloader = {
     grub_minimal.enable = lib.mkEnableOption ''
       Change the default bootloader to GRUB
     '';
@@ -96,7 +98,7 @@ in {
       boot.plymouth = {
         enable = true;
         theme = "blahaj";
-        themePackages = [pkgs.plymouth-blahaj-theme];
+        themePackages = [ pkgs.plymouth-blahaj-theme ];
       };
     })
   ];

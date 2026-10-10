@@ -1,10 +1,9 @@
 {
-  config,
-  lib,
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   nixpkgs.config.allowUnfree = true;
   programs.firefox.enable = true;
   # Script Kiddie stuff
@@ -33,8 +32,6 @@
       thunar-media-tags-plugin
     ];
   };
-
-  programs.yazi.enable = true;
 
   services.gvfs.enable = true;
   services.tumbler.enable = true;
@@ -249,7 +246,7 @@
     openFirewall = true;
   };
 
-  nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
+  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
   # AppImage
   programs.appimage = {

@@ -5,6 +5,16 @@ I am unfortunately just one person, I do not have a team to manage this
 Updates might come out slower, please be patient!
 Thank you for understanding!
 
+T1.4.4 "Operaatio Sisu"
+- Miksi tämä viesti on suomalainen?
+- Reduced Redundancy by quite a lot 
+- Added new way to manage your development enviroment 
+- Renamed a few import scripts from default to their actual purpose
+- Added new module desktop.nix 
+- Removed Redundant Configurations to make this config even smaller
+- Switch from KDE Plasma -> GNOME for VM testing 
+- Re-done the whole configuration.nix part 
+
 T1.4.3. "The Slim down update Part 3" 
 - Moved Alcom to a new file. 
 - Added new module (Needs Documentation)

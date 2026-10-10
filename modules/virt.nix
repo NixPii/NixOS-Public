@@ -3,10 +3,12 @@
   lib,
   pkgs,
   ...
-}: let
-  cfg = config.nixpii.virt;
-in {
-  options.nixpii.virt = {
+}:
+let
+  cfg = config.nixpii.system.virt;
+in
+{
+  options.nixpii.system.virt = {
     qemu_full.enable = lib.mkEnableOption ''
       Enable the full qemu configuration, cooked up by NixPii themselves.
       WARNING: This takes significant amount of RAM and TIME to compile.
@@ -35,7 +37,7 @@ in {
           enable = true;
           firewallBackend = "nftables";
           qemu = {
-            vhostUserPackages = [pkgs.virtiofsd];
+            vhostUserPackages = [ pkgs.virtiofsd ];
             swtpm.enable = true;
             package = pkgs.qemu_full.override {
               cephSupport = false;
@@ -53,7 +55,7 @@ in {
         libvirtd = {
           enable = true;
           firewallBackend = "nftables";
-          qemu.vhostUserPackages = [pkgs.virtiofsd];
+          qemu.vhostUserPackages = [ pkgs.virtiofsd ];
         };
       };
       programs.virt-manager.enable = true;
@@ -61,4 +63,3 @@ in {
   ];
 }
 # This is a very Work In Progress module, please ignore, this is not even being imported right now, for obvious reasons
-

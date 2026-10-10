@@ -1,9 +1,7 @@
 {
-  config,
-  lib,
-  pkgs,
   ...
-}: {
+}:
+{
   # Global Theming
   catppuccin = {
     enable = false;

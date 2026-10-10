@@ -1,12 +1,12 @@
 {
-  config,
-  lib,
   pkgs,
   inputs,
   ...
-}: let
+}:
+let
   spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-in {
+in
+{
   imports = [
     inputs.spicetify-nix.nixosModules.spicetify
   ];

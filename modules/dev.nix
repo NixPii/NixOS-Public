@@ -36,6 +36,10 @@ in
         '';
       };
 
+      yazi.enable = lib.mkEnableOption "Enable Yazi";
+
+      lazygit.enable = lib.mkEnableOption "Enable lazygit";
+
     };
 
   };
@@ -65,6 +69,14 @@ in
 
     (lib.mkIf (cfg.dev.unity.enable) {
       environment.systemPackages = [ pkgs.unityhub ];
+    })
+
+    (lib.mkIf (cfg.dev.yazi.enable) {
+      programs.yazi.enable = true;
+    })
+
+    (lib.mkIf (cfg.dev.lazygit.enable) {
+      programs.lazygit.enable = true;
     })
 
   ];

@@ -1,8 +1,8 @@
 {
   config,
-  pkgs,
   ...
-}: {
+}:
+{
   # --- Core Networking ---
   networking.nftables.enable = true;
 
@@ -13,7 +13,10 @@
     firewall = {
       enable = true;
       checkReversePath = "loose";
-      trustedInterfaces = [config.services.tailscale.interfaceName "virbr0"];
+      trustedInterfaces = [
+        config.services.tailscale.interfaceName
+        "virbr0"
+      ];
 
       allowedUDPPorts = [
         config.services.tailscale.port
@@ -47,8 +50,11 @@
     enable = true;
     settings = {
       Resolve = {
-        DNS = ["1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one"];
-        FallbackDNS = ["1.1.1.1#one.one.one.one 1.0.0.1#one.one.one.one"];
+        DNS = [
+          "1.1.1.1#one.one.one.one"
+          "1.0.0.1#one.one.one.one"
+        ];
+        FallbackDNS = [ "1.1.1.1#one.one.one.one 1.0.0.1#one.one.one.one" ];
         DNSSEC = "yes";
         DNSOverTLS = "yes";
         Domains = "~.";

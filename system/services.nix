@@ -1,9 +1,9 @@
 {
   config,
-  lib,
   pkgs,
   ...
-}: {
+}:
+{
   services.libinput.enable = true;
   services.pipewire = {
     enable = true;
@@ -22,21 +22,12 @@
   services.blueman.enable = true;
   security.polkit.enable = true;
   services.gnome.gnome-keyring.enable = true;
-  services.lact.enable = true;
 
   # Disable Seahorse for some reason
   programs.seahorse.enable = false;
 
   # Niri
   programs.niri.enable = true;
-
-  # Desktop Manager
-  # TODO: Move to modules
-  services.desktopManager = {
-    plasma6.enable = true; # Plasma 6
-    cosmic.enable = false; # Cosmic
-    gnome.enable = false; # GNOME
-  };
 
   services.gnome = {
     # GNOME Settings to use with Niri
@@ -48,7 +39,10 @@
     localsearch.enable = true;
   };
 
-  environment.gnome.excludePackages = with pkgs; [gnome-tour gnome-manuals];
+  environment.gnome.excludePackages = with pkgs; [
+    gnome-tour
+    gnome-manuals
+  ];
 
   # Window Managers (X11)
   services.xserver = {
@@ -63,9 +57,12 @@
 
   # Tailscale
   services.tailscale.enable = true;
-  services.tailscale.extraDaemonFlags = ["--no-logs-no-support"];
+  services.tailscale.extraDaemonFlags = [ "--no-logs-no-support" ];
 
-  services.udev.packages = [pkgs.yubikey-personalization pkgs.slimevr];
+  services.udev.packages = [
+    pkgs.yubikey-personalization
+    pkgs.slimevr
+  ];
 
   services.pcscd.enable = true;
 

@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  osConfig,
   ...
 }:
 let
@@ -63,7 +62,7 @@ in
         vim.notify.nvim-notify.enable = true;
         vim.visuals.indent-blankline.enable = true;
         vim.utility.oil-nvim.enable = false;
-        vim.utility.yazi-nvim.enable = true;
+        vim.utility.yazi-nvim.enable = false;
 
         # Additional utility plugins
         vim.git = {

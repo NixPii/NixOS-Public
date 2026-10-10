@@ -1,9 +1,9 @@
 {
-  config,
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   boot = {
     # GRUB
     # Enable "Silent boot"
@@ -27,7 +27,12 @@
   networking.hostName = "nixie"; # Define your hostname.
   networking.networkmanager = {
     enable = true;
-    plugins = [pkgs.networkmanager-openconnect pkgs.networkmanager-openvpn pkgs.networkmanager-libreswan pkgs.networkmanager-l2tp];
+    plugins = [
+      pkgs.networkmanager-openconnect
+      pkgs.networkmanager-openvpn
+      pkgs.networkmanager-libreswan
+      pkgs.networkmanager-l2tp
+    ];
   };
   networking.modemmanager.enable = true;
 
@@ -39,7 +44,9 @@
           Experimental = true;
           FastConnectable = true;
         };
-        Policy = {AutoEnable = true;};
+        Policy = {
+          AutoEnable = true;
+        };
       };
     };
 
@@ -69,7 +76,10 @@
   };
 
   nix.settings = {
-    experimental-features = ["nix-command" "flakes"];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
     download-buffer-size = 134217728;
     auto-optimise-store = true;
     max-jobs = "auto";
@@ -86,7 +96,7 @@
   };
 
   environment.etc.hosts.enable = true;
-  security.pam.services.swaylock = {};
+  security.pam.services.swaylock = { };
   security.sudo.wheelNeedsPassword = false;
 
   # Auto updates
@@ -104,7 +114,10 @@
     max-free = ${toString (1024 * 1024 * 1024)}
   '';
 
-  services.udev.packages = with pkgs; [oversteer liquidctl];
+  services.udev.packages = with pkgs; [
+    oversteer
+    liquidctl
+  ];
 
   environment.variables.EDITOR = "nvim";
 }
