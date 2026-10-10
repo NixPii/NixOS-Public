@@ -45,11 +45,6 @@
       url = "github:SteamClientHomebrew/Millennium?dir=packages/nix"; # Wiki
     };
 
-    # Temporary xwayland-satelite fix
-    nixpkgs-temp = {
-      url = "github:NixOS/nixpkgs/edfd59b795cd752c36d2dae60870cffcd23d3fb1";
-    };
-
     #  Piper-Git and Libratbag-Git (Own repo)
     ratbag-git = {
       url = "git+https://codeberg.org/NixPii/piper-git-nix";
@@ -60,6 +55,9 @@
       url = "path:./private"; # TODO, please change this, user.
       flake = false;
     };
+
+    # Todo: Redo the whole VR workflow, so the user does not compile the whole VR stack, for no reason
+    nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
   };
 
   outputs = inputs @ {
@@ -70,8 +68,8 @@
     nvf,
     catppuccin,
     ratbag-git,
-    nixpkgs-temp,
     private,
+    nixpkgs-xr,
     ...
   }: let
     system = "x86_64-linux";
@@ -87,14 +85,13 @@
       };
 
       modules = [
-        # ./programs/flatpak-sys.nix
-        # Removed, check version logs
         ./configuration.nix
         ./users/noctalia.nix
 
         catppuccin.nixosModules.catppuccin
         home-manager.nixosModules.home-manager
         nvf.nixosModules.default
+        nixpkgs-xr.nixosModules.nixpkgs-xr
 
         {
           # Inlined home-manager config

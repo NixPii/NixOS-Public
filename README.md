@@ -60,7 +60,7 @@ configuration, its hardware and storage requirements are also fairly high.
 ### Minimum Requirements
 
 * **12 GB of RAM**
-* **120 GB of available disk space**
+* **100 GB of available disk space**
 * **AMD or NVIDIA dedicated GPU**
 
 More RAM and disk space are recommended if you plan to make heavy use of
@@ -138,12 +138,10 @@ If you want the current recommended configuration, use `main`.
 This branch was previously used for the AMD-focused version of the
 configuration.
 
-It is retained only for historical reference.
-
 AMD support now lives in `main` and is selected with:
 
 ```nix
-nixpii.gpu.profile = "amd";
+nixpii.system.hardware.gpu.profile = "amd";
 ```
 
 ### `nvidia`
@@ -152,14 +150,12 @@ nixpii.gpu.profile = "amd";
 
 This branch was previously used to develop and experiment with NVIDIA support.
 
-It is retained only for historical reference.
-
 NVIDIA support now lives directly in `main`.
 
 For example:
 
 ```nix
-nixpii.gpu.profile = "nvidia";
+nixpii.system.hardware.gpu.profile = "nvidia";
 ```
 
 Separate AMD and NVIDIA Git branches are no longer necessary.
@@ -183,7 +179,7 @@ That has been replaced with:
 ```text
              main
               │
-     nixpii.gpu.profile
+     nixpii.system.hardware.gpu.profile
               │
  ┌────────────┼────────────┐
  ▼            ▼            ▼
@@ -204,7 +200,7 @@ than by changing Git branches.
 GPU selection is controlled with:
 
 ```nix
-nixpii.gpu.profile = "...";
+nixpii.system.hardware.gpu.profile = "...";
 ```
 
 Available profiles are:
@@ -223,7 +219,7 @@ For a normal installation, select **one**.
 ## Generic
 
 ```nix
-nixpii.gpu.profile = "generic";
+nixpii.system.hardware.gpu.profile = "generic";
 ```
 
 No vendor-specific GPU configuration is applied.
@@ -241,7 +237,7 @@ This is useful for:
 ## AMD
 
 ```nix
-nixpii.gpu.profile = "amd";
+nixpii.system.hardware.gpu.profile = "amd";
 ```
 
 Uses the `amdgpu` driver and enables the AMD-specific graphics configuration.
@@ -259,7 +255,7 @@ directly on physical hardware.
 ## NVIDIA
 
 ```nix
-nixpii.gpu.profile = "nvidia";
+nixpii.system.hardware.gpu.profile = "nvidia";
 ```
 
 Intended for modern NVIDIA GPUs, primarily Turing and newer hardware.
@@ -270,7 +266,7 @@ kernel modules.
 ## NVIDIA GTX 10-Series / Pascal
 
 ```nix
-nixpii.gpu.profile = "nvidia-10series";
+nixpii.system.hardware.gpu.profile = "nvidia-10series";
 ```
 
 Intended for GTX 10-series / Pascal hardware.
@@ -284,7 +280,7 @@ branch.
 ## NVIDIA Legacy
 
 ```nix
-nixpii.gpu.profile = "nvidia-legacy";
+nixpii.system.hardware.gpu.profile = "nvidia-legacy";
 ```
 
 Intended for older NVIDIA hardware, particularly Kepler-era GTX 600/700-series
@@ -305,7 +301,7 @@ hardware.
 ## Nouveau
 
 ```nix
-nixpii.gpu.profile = "nouveau";
+nixpii.system.hardware.gpu.profile = "nouveau";
 ```
 
 Uses the open-source Nouveau driver.
@@ -327,7 +323,7 @@ hardware.
 There is also an optional universal GPU mode:
 
 ```nix
-nixpii.gpu.specialisations.enable = true;
+nixpii.system.hardware.gpu.specialisations.enable = true;
 ```
 
 This exists for situations where the target GPU is not known ahead of time or
@@ -355,13 +351,13 @@ The resulting boot options include configurations for:
 Example:
 
 ```nix
-nixpii.gpu.profile = "amd";
+nixpii.system.hardware.gpu.profile = "amd";
 ```
 
 rather than:
 
 ```nix
-nixpii.gpu.specialisations.enable = true;
+nixpii.system.hardware.gpu.specialisations.enable = true;
 ```
 
 unless you actually need all of the GPU variants.
@@ -645,7 +641,7 @@ The test configuration uses the generic GPU profile rather than pulling in a
 vendor-specific GPU stack:
 
 ```nix
-nixpii.gpu.profile = "generic";
+nixpii.system.hardware.gpu.profile = "generic";
 ```
 
 AI tooling can also be disabled for the VM:
@@ -821,7 +817,7 @@ You no longer need to use a separate branch for AMD hardware.
 Use `main` and configure:
 
 ```nix
-nixpii.gpu.profile = "amd";
+nixpii.system.hardware.gpu.profile = "amd";
 ```
 
 Current AMD fixes and improvements should target `main`.
@@ -839,25 +835,25 @@ Use `main` and select the profile appropriate for your GPU.
 Modern NVIDIA:
 
 ```nix
-nixpii.gpu.profile = "nvidia";
+nixpii.system.hardware.gpu.profile = "nvidia";
 ```
 
 GTX 10-series / Pascal:
 
 ```nix
-nixpii.gpu.profile = "nvidia-10series";
+nixpii.system.hardware.gpu.profile = "nvidia-10series";
 ```
 
 Legacy NVIDIA:
 
 ```nix
-nixpii.gpu.profile = "nvidia-legacy";
+nixpii.system.hardware.gpu.profile = "nvidia-legacy";
 ```
 
 Nouveau fallback:
 
 ```nix
-nixpii.gpu.profile = "nouveau";
+nixpii.system.hardware.gpu.profile = "nouveau";
 ```
 
 GPU choice is now configuration, not branch choice.
@@ -882,7 +878,7 @@ For GPU problems, please also include:
 
 - GPU model
 - GPU generation, if known
-- selected `nixpii.gpu.profile`
+- selected `nixpii.system.hardware.gpu.profile`
 - NVIDIA driver version, where applicable
 - whether you are using Wayland or X11
 - whether the problem occurs during build, boot, login, or normal desktop use
@@ -954,13 +950,13 @@ For normal use:
 Choose your GPU through configuration:
 
 ```nix
-nixpii.gpu.profile = "amd";
+nixpii.system.hardware.gpu.profile = "amd";
 ```
 
 or:
 
 ```nix
-nixpii.gpu.profile = "nvidia";
+nixpii.system.hardware.gpu.profile = "nvidia";
 ```
 
 Use `testing` if you intentionally want to follow development work before it is

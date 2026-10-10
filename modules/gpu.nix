@@ -3,8 +3,9 @@
   lib,
   pkgs,
   ...
-}: let
-  cfg = config.nixpii.gpu;
+}:
+let
+  cfg = config.nixpii.system.hardware.gpu;
 
   # ---------------------------------------------------------------------------
   # GPU profiles
@@ -26,14 +27,14 @@
     #   - systems where the normal kernel/Mesa defaults are sufficient
     # -------------------------------------------------------------------------
 
-    generic = {};
+    generic = { };
 
     # -------------------------------------------------------------------------
     # AMD
     # -------------------------------------------------------------------------
 
     amd = {
-      services.xserver.videoDrivers = ["amdgpu"];
+      services.xserver.videoDrivers = [ "amdgpu" ];
 
       hardware.amdgpu = {
         opencl.enable = true;
@@ -50,7 +51,7 @@
     # -------------------------------------------------------------------------
 
     nvidia = {
-      services.xserver.videoDrivers = ["nvidia"];
+      services.xserver.videoDrivers = [ "nvidia" ];
 
       hardware.nvidia = {
         modesetting.enable = true;
@@ -70,7 +71,7 @@
     # -------------------------------------------------------------------------
 
     nvidia-10series = {
-      services.xserver.videoDrivers = ["nvidia"];
+      services.xserver.videoDrivers = [ "nvidia" ];
 
       boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_12;
 
@@ -92,7 +93,7 @@
     # -------------------------------------------------------------------------
 
     nvidia-legacy = {
-      services.xserver.videoDrivers = ["nvidia"];
+      services.xserver.videoDrivers = [ "nvidia" ];
 
       boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_6;
 
@@ -112,17 +113,18 @@
     # -------------------------------------------------------------------------
 
     nouveau = {
-      services.xserver.videoDrivers = ["nouveau"];
+      services.xserver.videoDrivers = [ "nouveau" ];
 
       boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_12;
     };
   };
-in {
+in
+{
   # ===========================================================================
   # Options
   # ===========================================================================
 
-  options.nixpii.gpu = {
+  options.nixpii.system.hardware.gpu = {
     # -------------------------------------------------------------------------
     # Selected GPU profile
     # -------------------------------------------------------------------------
@@ -218,7 +220,7 @@ in {
       };
 
       hardware.enableRedistributableFirmware = true;
-      hardware.firmware = [pkgs.linux-firmware];
+      hardware.firmware = [ pkgs.linux-firmware ];
 
       # Normal/default kernel unless a profile overrides it.
       boot.kernelPackages = lib.mkOverride 60 pkgs.linuxPackages;
@@ -232,33 +234,29 @@ in {
     # Nothing selected
     # -------------------------------------------------------------------------
 
-    (lib.mkIf (
-        cfg.profile
-        == null
-        && !cfg.specialisations.enable
-      ) {
-        warnings = [
-          ''
-            No GPU profile has been selected.
+    (lib.mkIf (cfg.profile == null && !cfg.specialisations.enable) {
+      warnings = [
+        ''
+          No GPU profile has been selected.
 
-            For a normal installation, choose the profile matching your GPU:
+          For a normal installation, choose the profile matching your GPU:
 
-              nixpii.gpu.profile = "generic";
-              nixpii.gpu.profile = "amd";
-              nixpii.gpu.profile = "nvidia";
-              nixpii.gpu.profile = "nvidia-10series";
-              nixpii.gpu.profile = "nvidia-legacy";
-              nixpii.gpu.profile = "nouveau";
+            nixpii.gpu.profile = "generic";
+            nixpii.gpu.profile = "amd";
+            nixpii.gpu.profile = "nvidia";
+            nixpii.gpu.profile = "nvidia-10series";
+            nixpii.gpu.profile = "nvidia-legacy";
+            nixpii.gpu.profile = "nouveau";
 
-            "generic" is recommended for VMs and testing.
+          "generic" is recommended for VMs and testing.
 
-            If you intentionally want all GPU variants available as boot
-            specialisations, use:
+          If you intentionally want all GPU variants available as boot
+          specialisations, use:
 
-              nixpii.gpu.specialisations.enable = true;
-          ''
-        ];
-      })
+            nixpii.gpu.specialisations.enable = true;
+        ''
+      ];
+    })
 
     # -------------------------------------------------------------------------
     # Universal mode enabled
@@ -284,52 +282,45 @@ in {
     # Both profile and universal mode selected
     # -------------------------------------------------------------------------
 
-    (lib.mkIf (
-        cfg.specialisations.enable
-        && cfg.profile != null
-      ) {
-        warnings = [
-          ''
-            Both nixpii.gpu.profile and nixpii.gpu.specialisations.enable
-            are configured.
+    (lib.mkIf (cfg.specialisations.enable && cfg.profile != null) {
+      warnings = [
+        ''
+          Both nixpii.gpu.profile and nixpii.gpu.specialisations.enable
+          are configured.
 
-            The selected GPU profile is ignored while universal GPU
-            specialisations are enabled.
+          The selected GPU profile is ignored while universal GPU
+          specialisations are enabled.
 
-            For a normal single-GPU installation, disable:
+          For a normal single-GPU installation, disable:
 
-              nixpii.gpu.specialisations.enable = false;
-          ''
-        ];
-      })
+            nixpii.gpu.specialisations.enable = false;
+        ''
+      ];
+    })
 
     # -------------------------------------------------------------------------
     # Generic GPU configuration warning
     # -------------------------------------------------------------------------
 
-    (lib.mkIf (
-        cfg.profile
-        == "generic"
-        && !cfg.specialisations.enable
-      ) {
-        warnings = [
-          ''
-            Generic GPU profile is selected.
+    (lib.mkIf (cfg.profile == "generic" && !cfg.specialisations.enable) {
+      warnings = [
+        ''
+          Generic GPU profile is selected.
 
-            The generic profile is intended primarily for virtual machines,
-            test systems, or hardware where no specific GPU configuration is
-            required.
+          The generic profile is intended primarily for virtual machines,
+          test systems, or hardware where no specific GPU configuration is
+          required.
 
-            For a normal installation, select the profile matching your GPU
-            instead.
+          For a normal installation, select the profile matching your GPU
+          instead.
 
-            For example, modern NVIDIA GPUs based on Turing or newer should use:
+          For example, modern NVIDIA GPUs based on Turing or newer should use:
 
-            nixpii.gpu.profile = "nvidia";
+          nixpii.gpu.profile = "nvidia";
 
-          ''
-        ];
-      })
+        ''
+      ];
+    })
 
     # =========================================================================
     # Normal / single-profile mode
@@ -341,41 +332,19 @@ in {
     # Only one of these branches can become active.
     # =========================================================================
 
-    (lib.mkIf (
-        !cfg.specialisations.enable
-        && cfg.profile == "generic"
-      )
-      profiles.generic)
+    (lib.mkIf (!cfg.specialisations.enable && cfg.profile == "generic") profiles.generic)
+
+    (lib.mkIf (!cfg.specialisations.enable && cfg.profile == "amd") profiles.amd)
+
+    (lib.mkIf (!cfg.specialisations.enable && cfg.profile == "nvidia") profiles.nvidia)
 
     (lib.mkIf (
-        !cfg.specialisations.enable
-        && cfg.profile == "amd"
-      )
-      profiles.amd)
+      !cfg.specialisations.enable && cfg.profile == "nvidia-10series"
+    ) profiles.nvidia-10series)
 
-    (lib.mkIf (
-        !cfg.specialisations.enable
-        && cfg.profile == "nvidia"
-      )
-      profiles.nvidia)
+    (lib.mkIf (!cfg.specialisations.enable && cfg.profile == "nvidia-legacy") profiles.nvidia-legacy)
 
-    (lib.mkIf (
-        !cfg.specialisations.enable
-        && cfg.profile == "nvidia-10series"
-      )
-      profiles.nvidia-10series)
-
-    (lib.mkIf (
-        !cfg.specialisations.enable
-        && cfg.profile == "nvidia-legacy"
-      )
-      profiles.nvidia-legacy)
-
-    (lib.mkIf (
-        !cfg.specialisations.enable
-        && cfg.profile == "nouveau"
-      )
-      profiles.nouveau)
+    (lib.mkIf (!cfg.specialisations.enable && cfg.profile == "nouveau") profiles.nouveau)
 
     # =========================================================================
     # Universal / specialisation mode
@@ -404,10 +373,9 @@ in {
               profiles.nvidia
 
               {
-                system.nixos.tags = ["NVIDIA-Open"];
+                system.nixos.tags = [ "NVIDIA-Open" ];
 
-                services.xserver.videoDrivers =
-                  lib.mkForce ["nvidia"];
+                services.xserver.videoDrivers = lib.mkForce [ "nvidia" ];
 
                 hardware.amdgpu = {
                   opencl.enable = lib.mkForce false;
@@ -426,10 +394,9 @@ in {
               profiles.nvidia-10series
 
               {
-                system.nixos.tags = ["NVIDIA-10Series"];
+                system.nixos.tags = [ "NVIDIA-10Series" ];
 
-                services.xserver.videoDrivers =
-                  lib.mkForce ["nvidia"];
+                services.xserver.videoDrivers = lib.mkForce [ "nvidia" ];
 
                 hardware.amdgpu = {
                   opencl.enable = lib.mkForce false;
@@ -448,10 +415,9 @@ in {
               profiles.nvidia-legacy
 
               {
-                system.nixos.tags = ["NVIDIA-Legacy"];
+                system.nixos.tags = [ "NVIDIA-Legacy" ];
 
-                services.xserver.videoDrivers =
-                  lib.mkForce ["nvidia"];
+                services.xserver.videoDrivers = lib.mkForce [ "nvidia" ];
 
                 hardware.amdgpu = {
                   opencl.enable = lib.mkForce false;
@@ -470,10 +436,9 @@ in {
               profiles.nouveau
 
               {
-                system.nixos.tags = ["NVIDIA-Fallback"];
+                system.nixos.tags = [ "NVIDIA-Fallback" ];
 
-                services.xserver.videoDrivers =
-                  lib.mkForce ["nouveau"];
+                services.xserver.videoDrivers = lib.mkForce [ "nouveau" ];
 
                 hardware.amdgpu = {
                   opencl.enable = lib.mkForce false;

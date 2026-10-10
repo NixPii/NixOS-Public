@@ -1,15 +1,11 @@
 {
-  config,
-  lib,
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   nixpkgs.config.allowUnfree = true;
   programs.firefox.enable = true;
-
-  programs.thunderbird.enable = true;
-  programs.coolercontrol.enable = true;
   # Script Kiddie stuff
   programs.wireshark = {
     enable = true;
@@ -36,8 +32,6 @@
       thunar-media-tags-plugin
     ];
   };
-
-  programs.yazi.enable = true;
 
   services.gvfs.enable = true;
   services.tumbler.enable = true;
@@ -98,14 +92,12 @@
     swaybg
     gparted-full
     clinfo
-    adwsteamgtk
     kdePackages.filelight
     libpcap
     libslirp
     ghostscript
     quickemu
     libnotify
-    sidequest
     proton-vpn-cli
     libsecret
     wireguard-tools
@@ -114,10 +106,7 @@
     freerdp
     dialog
     hw-probe
-    #freecad # Re-enable when gdal is fixed
-    obsidian
     lm_sensors
-    #liquidctl
     pciutils
     eza
     fzf
@@ -125,11 +114,8 @@
     proton-vpn
     libheif
     libheif.out
-    # Specify blender here, for NVIDIA and AMD branches
     xfce4-exo
-
-    # DVD-R and CD Stuff
-    brasero
+    qt6Packages.qt6ct
 
     # Art programs
     krita
@@ -137,10 +123,6 @@
 
     # Btrfs
     btrfs-assistant
-
-    # Themeing
-    # Moved to home/themeing.nix
-    qt6Packages.qt6ct
 
     # browsers
     ungoogled-chromium
@@ -151,18 +133,6 @@
     polkit
     polkit_gnome
     mate-polkit
-
-    # Yubikey
-    yubikey-manager
-    yubikey-agent
-    yubikey-touch-detector
-    yubikey-personalization
-
-    # i-Device
-    libimobiledevice
-    ifuse
-    idevicerestore
-    img4tool
 
     # Xwayland
     xwayland
@@ -188,7 +158,6 @@
     img4lib
     yt-dlp
     easyeffects
-    linux-wallpaperengine
     hyfetch
 
     # MC
@@ -200,9 +169,7 @@
     jdk21
 
     # Fun :D
-    asciiquarium-transparent
     cmatrix
-    cbonsai
     sl
     lolcat
     pay-respects
@@ -214,13 +181,6 @@
     waypaper
     timg
     inkscape-with-extensions
-
-    # Games
-    balatro-mod-manager
-    ckan
-
-    # Camera uwu
-    cameractrls
 
     # Resolve
     distrobox
@@ -265,35 +225,11 @@
     stress-ng
     corectrl
 
-    # Wheel
-    oversteer
-    evtest
-
     # Programming
     go
     gotools
     go-tools
     conda
-    jetbrains.pycharm
-    (
-      pkgs.python3.withPackages (
-        p:
-          with p; [
-            numpy
-            requests
-            pandas
-          ]
-      )
-    )
-
-    # Script Kiddie Stuff v2
-    masscan
-    metasploit
-    nmap
-
-    # EMUS
-    xemu
-    xenia-canary
 
     # NixOS
     nvd
@@ -301,9 +237,6 @@
 
     ripgrep
     hyprpicker
-
-    # Matrix
-    element-desktop
 
     # END OF APPS
   ];
@@ -313,7 +246,7 @@
     openFirewall = true;
   };
 
-  nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
+  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
   # AppImage
   programs.appimage = {

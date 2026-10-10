@@ -1,17 +1,10 @@
 {
-  config,
-  lib,
   pkgs,
-  inputs,
   ...
-}: let
-  xwayland-fix = import inputs.nixpkgs-temp {
-    system = pkgs.stdenv.hostPlatform.system;
-    config.allowUnfree = true;
-  };
-in {
+}:
+{
   environment.systemPackages = with pkgs; [
-    xwayland-fix.xwayland-satellite
+    xwayland-satellite
   ];
 
   xdg.portal = {
@@ -25,20 +18,20 @@ in {
 
     config = {
       common = {
-        default = ["gtk"];
+        default = [ "gtk" ];
       };
 
       niri = {
         # Niri XDG Config
-        "org.freedesktop.impl.portal.FileChooser" = ["gtk"];
+        "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
       };
 
       kde = {
-        default = ["kde"];
+        default = [ "kde" ];
       };
 
       cosmic = {
-        default = ["cosmic"];
+        default = [ "cosmic" ];
       };
     };
   };

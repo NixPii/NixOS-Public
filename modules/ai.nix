@@ -3,21 +3,24 @@
   lib,
   pkgs,
   ...
-}: let
-  cfg = config.nixpii.ai;
+}:
+let
+  cfg = config.nixpii.system.dev.ai;
 
   ollamaPackage =
-    if cfg.acceleration == "rocm"
-    then pkgs.ollama-rocm
-    else if cfg.acceleration == "cuda"
-    then pkgs.ollama-cuda
-    else pkgs.ollama;
-in {
+    if cfg.acceleration == "rocm" then
+      pkgs.ollama-rocm
+    else if cfg.acceleration == "cuda" then
+      pkgs.ollama-cuda
+    else
+      pkgs.ollama;
+in
+{
   # ===========================================================================
   # Options
   # ===========================================================================
 
-  options.nixpii.ai = {
+  options.nixpii.system.dev.ai = {
     enable = lib.mkEnableOption "AI and local LLM tooling";
 
     acceleration = lib.mkOption {
@@ -104,10 +107,11 @@ in {
       # -----------------------------------------------------------------------
 
       {
-        environment.systemPackages =
-          [ollamaPackage]
-          ++ lib.optional cfg.opencode.enable pkgs.opencode
-          ++ lib.optional cfg.opencodeDesktop.enable pkgs.opencode-desktop;
+        environment.systemPackages = [
+          ollamaPackage
+        ]
+        ++ lib.optional cfg.opencode.enable pkgs.opencode
+        ++ lib.optional cfg.opencodeDesktop.enable pkgs.opencode-desktop;
       }
 
       # -----------------------------------------------------------------------
@@ -120,24 +124,17 @@ in {
           package = ollamaPackage;
 
           environmentVariables =
-            lib.optionalAttrs (
-              cfg.acceleration
-              == "rocm"
-              && cfg.rocm.hccAmdgpuTarget != null
-            ) {
-              HCC_AMDGPU_TARGET = cfg.rocm.hccAmdgpuTarget;
-            };
+            lib.optionalAttrs (cfg.acceleration == "rocm" && cfg.rocm.hccAmdgpuTarget != null)
+              {
+                HCC_AMDGPU_TARGET = cfg.rocm.hccAmdgpuTarget;
+              };
         };
       }
 
       # ROCm-specific GFX override
-      (lib.mkIf (
-          cfg.acceleration
-          == "rocm"
-          && cfg.rocm.overrideGfx != null
-        ) {
-          services.ollama.rocmOverrideGfx = cfg.rocm.overrideGfx;
-        })
+      (lib.mkIf (cfg.acceleration == "rocm" && cfg.rocm.overrideGfx != null) {
+        services.ollama.rocmOverrideGfx = cfg.rocm.overrideGfx;
+      })
 
       # -----------------------------------------------------------------------
       # Open WebUI
@@ -151,15 +148,9 @@ in {
       # Helpful warnings
       # -----------------------------------------------------------------------
 
-      (lib.mkIf (
-          cfg.acceleration
-          != "rocm"
-          && (
-            cfg.rocm.overrideGfx
-            != null
-            || cfg.rocm.hccAmdgpuTarget != null
-          )
-        ) {
+      (lib.mkIf
+        (cfg.acceleration != "rocm" && (cfg.rocm.overrideGfx != null || cfg.rocm.hccAmdgpuTarget != null))
+        {
           warnings = [
             ''
               nixpii.ai.rocm options are configured, but:
@@ -169,7 +160,8 @@ in {
               The ROCm-specific settings will therefore have no effect.
             ''
           ];
-        })
+        }
+      )
     ]
   );
 }
