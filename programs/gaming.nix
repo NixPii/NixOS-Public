@@ -11,7 +11,7 @@
     enable = true;
     remotePlay.openFirewall = true;
     protontricks.enable = true;
-    package = pkgs.steam.override {
+    package = pkgs.millennium-steam.override {
       extraProfile = ''
         # Allows Monado/WiVRn to be used
         export PRESSURE_VESSEL_IMPORT_OPENXR_1_RUNTIMES=1

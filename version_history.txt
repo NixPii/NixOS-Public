@@ -5,6 +5,10 @@ I am unfortunately just one person, I do not have a team to manage this
 Updates might come out slower, please be patient!
 Thank you for understanding!
 
+T1.5 "The final countdown" 
+- Final preparations for merge to main 
+
+
 T1.4.4 "Operaatio Sisu"
 - Miksi tämä viesti on suomalainen?
 - Reduced Redundancy by quite a lot 
