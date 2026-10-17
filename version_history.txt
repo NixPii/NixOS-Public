@@ -5,6 +5,38 @@ I am unfortunately just one person, I do not have a team to manage this
 Updates might come out slower, please be patient!
 Thank you for understanding!
 
+T1.5.1 "The Hotfix"
+- Same as main (Right now)
+
+
+V1.5-1 "Hotfix" (Latest Stable)
+- Removed Zen browser from flake
+- Updated flake.lock 
+
+V1.5 "The Great Nixodus"
+
+- Remember when I said T1.4.X wouldn't add new features or modules? That aged well :D
+- Re-done configuration.nix and moved the custom options under nixpii.system
+- GPU, AI, Bootloader and Virtualisation options have new paths now. Please update your private configs accordingly!
+- Added modules/desktop.nix, with options for Plasma 6, GNOME, COSMIC, Niri and Hyprland
+- Added modules/dev.nix, so you can manage your development tools without digging through a thousand files
+- Neovim now has full, minimal and disabled modes. Full is still enabled by default
+- Moved the Neovim config into its own file and disabled its Yazi integration. Standalone Yazi stays enabled
+- Added a Lazygit toggle, enabled by default
+- Made Alcom & Unity optional, both disabled by default. The Alcom option includes Unity Hub and the existing editor wrapper
+- Moved WiVRn and the main VR package configuration into modules/vr.nix. Enable Meta headset support if you need it!
+- VR is disabled by default now. There are still a few VR leftovers outside the module, more cleanup to come
+- Added nixpkgs-xr and updated the flake
+- Removed the temporary xwayland-satellite pin and several stable-package overrides
+- Slimmed down the base nix-ld list from 115 entries to 11. VR adds extra libraries when enabled
+- Removed default Docker and LACT enablement. Docker Compose is still included
+- Removed Thunderbird and CoolerControl enablement
+- Trimmed the default package list, to save on space.
+- Removed the dedicated Steam Gamescope session and its hardcoded DP-2 setting. Gamescope itself stays
+- Renamed the system, program and theme import files to make their purpose clearer
+- Cleaned up duplicate package entries and reworked the testing README
+- Still TODO: Update old option names in the documentation and finish wiring up the Niri toggle, which currently doesn't turn Niri off
+
 T1.5 "The final countdown" 
 - Final preparations for merge to main 
 
