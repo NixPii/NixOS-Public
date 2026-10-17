@@ -5,7 +5,11 @@ I am unfortunately just one person, I do not have a team to manage this
 Updates might come out slower, please be patient!
 Thank you for understanding!
 
-V1.5 "The Great Nixodus" (Latest Stable):
+V1.5-1 "Hotfix" (Latest Stable)
+- Removed Zen browser from flake
+- Updated flake.lock 
+
+V1.5 "The Great Nixodus"
 
 - Remember when I said T1.4.X wouldn't add new features or modules? That aged well :D
 - Re-done configuration.nix and moved the custom options under nixpii.system

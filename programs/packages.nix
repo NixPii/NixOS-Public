@@ -2,8 +2,7 @@
   pkgs,
   inputs,
   ...
-}:
-{
+}: {
   nixpkgs.config.allowUnfree = true;
   programs.firefox.enable = true;
   # Script Kiddie stuff
@@ -127,7 +126,6 @@
     # browsers
     ungoogled-chromium
     librewolf
-    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     # Polkit
     polkit
@@ -246,7 +244,7 @@
     openFirewall = true;
   };
 
-  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+  nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
   # AppImage
   programs.appimage = {

@@ -31,12 +31,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Zen Browser, duh
-    zen-browser = {
-      url = "github:youwen5/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # catppuccin
     catppuccin.url = "github:catppuccin/nix";
 
