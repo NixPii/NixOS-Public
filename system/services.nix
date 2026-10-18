@@ -2,8 +2,7 @@
   config,
   pkgs,
   ...
-}:
-{
+}: {
   services.libinput.enable = true;
   services.pipewire = {
     enable = true;
@@ -25,9 +24,6 @@
 
   # Disable Seahorse for some reason
   programs.seahorse.enable = false;
-
-  # Niri
-  programs.niri.enable = true;
 
   services.gnome = {
     # GNOME Settings to use with Niri
@@ -57,10 +53,9 @@
 
   # Tailscale
   services.tailscale.enable = true;
-  services.tailscale.extraDaemonFlags = [ "--no-logs-no-support" ];
+  services.tailscale.extraDaemonFlags = ["--no-logs-no-support"];
 
   services.udev.packages = [
-    pkgs.yubikey-personalization
     pkgs.slimevr
   ];
 

@@ -2,21 +2,15 @@
   pkgs,
   inputs,
   ...
-}:
-let
+}: let
   spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-in
-{
+in {
   imports = [
     inputs.spicetify-nix.nixosModules.spicetify
   ];
 
   # Music & MIDI Production / Playback
   environment.systemPackages = with pkgs; [
-    linthesia
-    lmms-full
-    neothesia
-    synthesia
     cider-2
     vlc
     mpv

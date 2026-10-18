@@ -4,13 +4,6 @@
   ...
 }: {
   nixpkgs.config.allowUnfree = true;
-  programs.firefox.enable = true;
-  # Script Kiddie stuff
-  programs.wireshark = {
-    enable = true;
-    dumpcap.enable = true;
-    usbmon.enable = true;
-  };
 
   programs.nh = {
     enable = true;

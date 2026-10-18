@@ -2,11 +2,13 @@
   pkgs,
   inputs,
   ...
-}:
-{
-  nixpkgs.overlays = [ inputs.millennium.overlays.default ];
+}: {
+  nixpkgs.overlays = [inputs.millennium.overlays.default];
 
   # Steam
+
+  # This should work with 64 bit steam too.
+  # Now that Steam switched from 32 -> 64 bits in the latest Beta
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;
@@ -47,15 +49,12 @@
     vulkan-loader
     protontricks
     protonplus
-    (bottles.override { removeWarningPopup = true; })
+    (bottles.override {removeWarningPopup = true;})
 
     # Wine
     wineWow64Packages.stagingFull
     wineWow64Packages.fonts
     winetricks
-
-    # Roblox Stuff
-    vinegar
   ];
 
   environment.sessionVariables = {

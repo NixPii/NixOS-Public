@@ -1,8 +1,4 @@
-{
-  config,
-  ...
-}:
-{
+{config, ...}: {
   # --- Core Networking ---
   networking.nftables.enable = true;
 
@@ -20,22 +16,15 @@
 
       allowedUDPPorts = [
         config.services.tailscale.port
-        9757
-        5353
-        10767
       ];
 
       allowedTCPPorts = [
-        9757
-        10767
       ];
     };
 
     nameservers = [
-      #"1.1.1.1"
-      #"1.0.0.1"
-      "127.0.0.1"
-      "::1"
+      "1.1.1.1"
+      "1.0.0.1"
     ];
   };
 
@@ -54,7 +43,7 @@
           "1.1.1.1#one.one.one.one"
           "1.0.0.1#one.one.one.one"
         ];
-        FallbackDNS = [ "1.1.1.1#one.one.one.one 1.0.0.1#one.one.one.one" ];
+        FallbackDNS = ["1.1.1.1#one.one.one.one 1.0.0.1#one.one.one.one"];
         DNSSEC = "yes";
         DNSOverTLS = "yes";
         Domains = "~.";

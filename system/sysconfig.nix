@@ -2,37 +2,10 @@
   lib,
   pkgs,
   ...
-}:
-{
-  boot = {
-    # GRUB
-    # Enable "Silent boot"
-    consoleLogLevel = 3;
-    initrd.verbose = true;
-
-    # Kernel
-    kernelPackages = lib.mkDefault pkgs.linuxPackages_testing;
-
-    kernelParams = [
-      "splash"
-      "udev.log_level=3"
-      "systemd.show_status=auto"
-      "boot.shell_on_fail"
-    ];
-  };
-
-  boot.loader.systemd-boot.enable = false;
-  boot.loader.efi.canTouchEfiVariables = true;
-
+}: {
   networking.hostName = "nixie"; # Define your hostname.
   networking.networkmanager = {
     enable = true;
-    plugins = [
-      pkgs.networkmanager-openconnect
-      pkgs.networkmanager-openvpn
-      pkgs.networkmanager-libreswan
-      pkgs.networkmanager-l2tp
-    ];
   };
   networking.modemmanager.enable = true;
 
@@ -96,7 +69,7 @@
   };
 
   environment.etc.hosts.enable = true;
-  security.pam.services.swaylock = { };
+  security.pam.services.swaylock = {};
   security.sudo.wheelNeedsPassword = false;
 
   # Auto updates
@@ -109,13 +82,7 @@
   nix.gc.options = "--delete-older-than 7d";
   nix.optimise.automatic = true;
 
-  nix.extraOptions = ''
-    min-free = ${toString (100 * 1024 * 1024)}
-    max-free = ${toString (1024 * 1024 * 1024)}
-  '';
-
   services.udev.packages = with pkgs; [
-    oversteer
     liquidctl
   ];
 
