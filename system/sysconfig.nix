@@ -56,7 +56,6 @@
     download-buffer-size = 134217728;
     auto-optimise-store = true;
     max-jobs = "auto";
-    cores = 16;
   };
 
   time.timeZone = "Europe/Budapest";
