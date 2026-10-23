@@ -48,6 +48,8 @@
       # Wayland compositors
       niri.enable = true; # Niri scrolling compositor
       hyprland.enable = false; # Hyprland compositor
+
+      noctalia = "disabled";
     };
 
     # ============================================================

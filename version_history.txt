@@ -9,7 +9,13 @@ T1.5.3 "Cyber Crane"
 - Fixed Niri for the final time 
 - Finally moved away from all the default.nix's 
 - Fixed Gear Lever not compiling on the new commit 
-
+- new-lg4ff has been disabled due to conflicts with building the kernel (TODO: Fix)
+- Noctalia Shell has been disabled from the default build enviroment.
+- Noctalia Shell moved to the desktop module 
+- Note on this version: 
+  Noctalia has been disabled due to compile requirements on Laptops. 
+  Please re-enable noctalia if your actively using any window manager.
+  Thank you, and thank you for the feedback, to the people who activelly helped me :D 
 
 T1.5.2 "Suspicious Stoat" 
 - Fixed Niri to be toggleable

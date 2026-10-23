@@ -80,7 +80,6 @@
 
       modules = [
         ./configuration.nix
-        ./users/noctalia.nix
 
         catppuccin.nixosModules.catppuccin
         home-manager.nixosModules.home-manager
@@ -94,8 +93,6 @@
             useUserPackages = true;
             users.nixpii = {
               imports = [
-                # ./home/flatpak.nix
-                # Removed, check version logs
                 ./home.nix
                 catppuccin.homeModules.catppuccin
               ];

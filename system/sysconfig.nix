@@ -23,7 +23,7 @@
       };
     };
 
-    new-lg4ff.enable = true;
+    new-lg4ff.enable = false;
     i2c.enable = true;
 
     uinput.enable = true;

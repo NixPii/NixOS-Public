@@ -11,6 +11,10 @@
 > branch** instead. This branch is considered by the developer to be very
 > unstable.
 
+> [!WARNING]
+> ** Noctalia shell has been disabled by default. ** If your actively using a
+> window manager, you need to re-enable it.
+
 ## What Is This Branch?
 
 The `testing` branch is the staging area for changes that are not ready to be

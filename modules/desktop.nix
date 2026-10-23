@@ -1,6 +1,8 @@
 {
   config,
   lib,
+  pkgs,
+  inputs,
   ...
 }: let
   cfg = config.nixpii.system.desktop;
@@ -24,6 +26,27 @@ in {
 
     cosmic = {
       enable = lib.mkEnableOption "Enable COSMIC";
+    };
+
+    noctalia = lib.mkOption {
+      type = lib.types.nullOr (
+        lib.types.enum [
+          "nixpkg"
+          "flake"
+          "disabled"
+        ]
+      );
+      default = "disabled";
+
+      description = ''
+
+        Enable the Noctalia shell for Window Managers
+
+        The avalible options are:
+        nixpkgs - Enables the version located in nixpkgs
+        flake - Enable tracking main from the Noctalia repo via the flake
+        disabled (default) - Disabled, does not build noctalia
+      '';
     };
   };
 
@@ -73,6 +96,18 @@ in {
     (lib.mkIf cfg.cosmic.enable {
       services.desktopManager.cosmic.enable = true;
       services.desktopManager.cosmic.xwayland.enable = true;
+    })
+
+    (lib.mkIf (cfg.noctalia == "nixpkg") {
+      environment.systemPackages = with pkgs; [
+        noctalia-shell
+      ];
+    })
+
+    (lib.mkIf (cfg.noctalia == "flake") {
+      environment.systemPackages = [
+        inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+      ];
     })
   ];
 }
