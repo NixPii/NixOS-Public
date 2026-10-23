@@ -24,15 +24,31 @@
           ]);
       });
     })
+
+    (final: prev: {
+      gearlever = prev.gearlever.overrideAttrs (old: {
+        makeWrapperArgs = [
+          "--prefix"
+          "PATH"
+          ":"
+          (prev.lib.removePrefix
+            "--prefix PATH : "
+            (builtins.elemAt old.makeWrapperArgs 1))
+        ];
+
+        preFixup =
+          (old.preFixup or "")
+          + ''
+            makeWrapperArgs+=("''${gappsWrapperArgs[@]}")
+          '';
+      });
+    })
   ];
 
   # Temporary fix
   nixpkgs.config.permittedInsecurePackages = ["electron-40.10.5"];
 
   environment.pathsToLink = ["share/thumbnailers"];
-
-  # Niri messing  up stuff :/
-  services.displayManager.defaultSession = lib.mkForce "niri";
 
   # Nautilus extensions
 

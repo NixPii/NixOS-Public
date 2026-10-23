@@ -2,11 +2,9 @@
   config,
   lib,
   ...
-}:
-let
+}: let
   cfg = config.nixpii.system.desktop;
-in
-{
+in {
   options.nixpii.system.desktop = {
     plasma6.enable = lib.mkEnableOption "Enable Plasma 6";
 
@@ -26,7 +24,6 @@ in
 
     cosmic = {
       enable = lib.mkEnableOption "Enable COSMIC";
-
     };
   };
 
@@ -43,6 +40,30 @@ in
 
     (lib.mkIf cfg.niri.enable {
       programs.niri.enable = true;
+
+      # XDG workaround
+      xdg.portal = {
+        config = {
+          common = {
+            default = ["gtk"];
+          };
+
+          niri = {
+            # Niri XDG Config
+            "org.freedesktop.impl.portal.FileChooser" = ["gtk"];
+          };
+
+          kde = {
+            default = ["kde"];
+          };
+
+          cosmic = {
+            default = ["cosmic"];
+          };
+        };
+      };
+
+      services.displayManager.defaultSession = lib.mkForce "niri";
     })
 
     (lib.mkIf cfg.hyprland.enable {
@@ -53,6 +74,5 @@ in
       services.desktopManager.cosmic.enable = true;
       services.desktopManager.cosmic.xwayland.enable = true;
     })
-
   ];
 }

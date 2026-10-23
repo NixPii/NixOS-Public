@@ -5,6 +5,11 @@ I am unfortunately just one person, I do not have a team to manage this
 Updates might come out slower, please be patient!
 Thank you for understanding!
 
+T1.5.3 "Cyber Crane"
+- Fixed Niri for the final time 
+- Finally moved away from all the default.nix's 
+- Fixed Gear Lever not compiling on the new commit 
+
 
 T1.5.2 "Suspicious Stoat" 
 - Fixed Niri to be toggleable

@@ -139,12 +139,6 @@
     curl
     git
 
-    # Discord
-    (discord.override {
-      withOpenASAR = true;
-      withVencord = true;
-    })
-
     # Neat
     img4lib
     yt-dlp
@@ -258,16 +252,10 @@
     enable = true;
     enableSSHSupport = true;
   };
-  virtualisation = {
-    waydroid = {
-      enable = true;
-      package = pkgs.waydroid-nftables;
-    };
-  };
 
   programs.obs-studio = {
     enable = true;
-    enableVirtualCamera = true;
+    enableVirtualCamera = false;
 
     plugins = with pkgs.obs-studio-plugins; [
       wlrobs

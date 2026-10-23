@@ -4,8 +4,7 @@
   pkgs,
   inputs,
   ...
-}:
-{
+}: {
   home.username = "nixpii";
   home.homeDirectory = "/home/nixpii";
   home.stateVersion = "26.05";
@@ -236,18 +235,17 @@
     enable = true;
   };
 
-  xdg.configFile."openvr/openvrpaths.vrpath".text =
-    let
-      steam = "${config.xdg.dataHome}/Steam";
-    in
+  xdg.configFile."openvr/openvrpaths.vrpath".text = let
+    steam = "${config.xdg.dataHome}/Steam";
+  in
     builtins.toJSON {
       version = 1;
       jsonid = "vrpathreg";
 
       external_drivers = null;
-      config = [ "${steam}/config" ];
+      config = ["${steam}/config"];
 
-      log = [ "${steam}/logs" ];
+      log = ["${steam}/logs"];
 
       runtime = [
         "${pkgs.opencomposite}/lib/opencomposite"
@@ -257,5 +255,14 @@
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
+  };
+
+  home.pointerCursor = {
+    enable = true;
+    name = "Bibata-Modern-Ice";
+    package = pkgs.bibata-cursors;
+    size = 24;
+    gtk.enable = true;
+    x11.enable = true;
   };
 }

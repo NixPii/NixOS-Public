@@ -1,12 +1,7 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-{
-  inputs,
-  ...
-}:
-{
-
+{inputs, ...}: {
   nixpii.system = {
     # ============================================================
     # DEVELOPMENT TOOLS
@@ -115,8 +110,8 @@
     ./modules/vr.nix
     ./modules/dev.nix
     ./programs/programs_import.nix
-    ./users/default.nix
-    ./extra/default.nix
+    ./users/users_import.nix
+    ./extra/extra_import.nix
     ./theme/theme_import.nix
     ./modules/imports/neovim.nix
     ./modules/desktop.nix
