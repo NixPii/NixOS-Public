@@ -18,6 +18,18 @@
         "type": "github"
       }
     },
+    "extra-usrcfg": {
+      "flake": false,
+      "locked": {
+        "path": "./extra",
+        "type": "path"
+      },
+      "original": {
+        "path": "./extra",
+        "type": "path"
+      },
+      "parent": []
+    },
     "flake-compat": {
       "locked": {
         "lastModified": 1733328505,
@@ -408,6 +420,7 @@
     "root": {
       "inputs": {
         "catppuccin": "catppuccin",
+        "extra-usrcfg": "extra-usrcfg",
         "home-manager": "home-manager",
         "millennium": "millennium",
         "nixpkgs": "nixpkgs_3",

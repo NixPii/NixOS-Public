@@ -50,6 +50,11 @@
       flake = false;
     };
 
+    extra-usrcfg = {
+      url = "path:./extra";
+      flake = false;
+    };
+
     # Todo: Redo the whole VR workflow, so the user does not compile the whole VR stack, for no reason
     nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
   };
@@ -63,6 +68,7 @@
     catppuccin,
     ratbag-git,
     private,
+    extra-usrcfg,
     nixpkgs-xr,
     ...
   }: let
