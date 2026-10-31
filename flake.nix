@@ -46,7 +46,12 @@
     };
 
     private = {
-      url = "path:./private"; # TODO, please change this, user.
+      url = "path:./private";
+      flake = false;
+    };
+
+    extra-usrcfg = {
+      url = "path:./extra";
       flake = false;
     };
 
@@ -63,6 +68,7 @@
     catppuccin,
     ratbag-git,
     private,
+    extra-usrcfg,
     nixpkgs-xr,
     ...
   }: let

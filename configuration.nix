@@ -117,6 +117,7 @@
     ./theme/theme_import.nix
     ./modules/imports/neovim.nix
     ./modules/desktop.nix
+    "${inputs.extra-usrcfg}/special.nix"
     "${inputs.private}/private.nix" # Include the users private configuration, which of course, is not included.
   ];
   system.stateVersion = "25.11"; # Did you read the comment?

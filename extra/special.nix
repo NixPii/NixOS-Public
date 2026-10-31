@@ -1,0 +1,2 @@
+{...}:
+builtins.trace "🎃 Happy Halloween! 👻" {}
