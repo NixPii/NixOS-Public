@@ -18,18 +18,6 @@
         "type": "github"
       }
     },
-    "extra-usrcfg": {
-      "flake": false,
-      "locked": {
-        "path": "./extra",
-        "type": "path"
-      },
-      "original": {
-        "path": "./extra",
-        "type": "path"
-      },
-      "parent": []
-    },
     "flake-compat": {
       "locked": {
         "lastModified": 1733328505,
@@ -170,6 +158,18 @@
         "repo": "mnw",
         "type": "github"
       }
+    },
+    "modules": {
+      "flake": false,
+      "locked": {
+        "path": "./modules",
+        "type": "path"
+      },
+      "original": {
+        "path": "./modules",
+        "type": "path"
+      },
+      "parent": []
     },
     "nixpkgs": {
       "locked": {
@@ -420,9 +420,9 @@
     "root": {
       "inputs": {
         "catppuccin": "catppuccin",
-        "extra-usrcfg": "extra-usrcfg",
         "home-manager": "home-manager",
         "millennium": "millennium",
+        "modules": "modules",
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-xr": "nixpkgs-xr",

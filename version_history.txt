@@ -5,6 +5,14 @@ I am unfortunately just one person, I do not have a team to manage this
 Updates might come out slower, please be patient!
 Thank you for understanding!
 
+T1.5.4 This is a Developmental commit. Please ignore. 
+- Todo: Write Changelog 
+- Introduced new gaming module 
+- Currently does nothing
+- Re-done the module importing, so it's not a mess anymore
+- Removed Halloween. 
+
+
 T1.5.3-SPECIAL: 
 - Happy Halloween :D 
 

@@ -50,8 +50,8 @@
       flake = false;
     };
 
-    extra-usrcfg = {
-      url = "path:./extra";
+    modules = {
+      url = "path:./modules";
       flake = false;
     };
 
@@ -68,7 +68,7 @@
     catppuccin,
     ratbag-git,
     private,
-    extra-usrcfg,
+    modules,
     nixpkgs-xr,
     ...
   }: let
