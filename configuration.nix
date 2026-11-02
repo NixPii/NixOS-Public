@@ -1,7 +1,7 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-{inputs, ...}: {
+{ inputs, pkgs, ... }: {
   nixpii.system = {
     # ============================================================
     # DEVELOPMENT TOOLS
@@ -50,6 +50,34 @@
       hyprland.enable = false; # Hyprland compositor
 
       noctalia = "disabled";
+    };
+
+    # ============================================================
+    # GAMING CONFIG
+    # ============================================================
+    gaming = {
+
+      # Steam Related Configuration
+      steam = {
+        enable = false; # Enable Steam
+        variant = "full"; # Options: "full", "minimal"
+        millennium.enable = false; # Enable the Millennium Steam client
+      };
+
+      # Minecraft Related Configuration
+      minecraft = {
+        enable = false; # Enable Minecraft support via Prism Launcher
+        lunar.enable = false; # Enable Lunar Client
+
+        jdks = with pkgs; [
+          jdk8
+          jdk11
+          jdk17
+          jdk21
+          jdk25
+        ];
+      };
+
     };
 
     # ============================================================

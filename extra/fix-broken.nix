@@ -57,6 +57,11 @@
     terminal = "ghostty";
   };
 
+  # This stays until packages move from GTK2 -> GTK 3 or GTK 4
+  nixpkgs.config = {
+    problems.handlers = {"gtk+".broken = "warn";};
+  };
+
   environment.systemPackages = with pkgs; [
     nautilus
     gearlever

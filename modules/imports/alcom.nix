@@ -3,8 +3,7 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   cfg = osConfig.nixpii.system.dev.alcom;
 
   unityhub = pkgs.unityhub;
@@ -21,16 +20,14 @@ let
       "$real" \
       "$@"
   '';
-in
-{
+in {
   config = lib.mkIf cfg.enable {
-
     home.packages = [
       pkgs.alcom
       unityhub
     ];
 
-    home.activation.wrapUnityEditors = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    home.activation.wrapUnityEditors = lib.hm.dag.entryAfter ["writeBoundary"] ''
       for unity in "$HOME"/Unity/Hub/Editor/*/Editor/Unity; do
         # Glob matched nothing
         [ -e "$unity" ] || continue
@@ -53,6 +50,5 @@ in
           "$editor/Unity"
       done
     '';
-
   };
 }

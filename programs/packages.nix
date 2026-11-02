@@ -2,7 +2,8 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   nixpkgs.config.allowUnfree = true;
 
   programs.nh = {
@@ -80,7 +81,6 @@
     luajitPackages.nvim-cmp
     vimPlugins.image-nvim
     bibata-cursors
-    gamemode
     swaybg
     gparted-full
     clinfo
@@ -145,13 +145,8 @@
     easyeffects
     hyfetch
 
-    # MC
-    prismlauncher
-    lunar-client
-    jdk8
-    jdk11
-    jdk17
-    jdk21
+    # Java Development Kit (JDK)
+    jdk25
 
     # Fun :D
     cmatrix
@@ -231,7 +226,7 @@
     openFirewall = true;
   };
 
-  nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
+  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
   # AppImage
   programs.appimage = {
