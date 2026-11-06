@@ -90,7 +90,7 @@
       # GRUB
       grub_minimal.enable = false; # Minimal GRUB setup
       grub_full.enable = false; # GRUB with additional theming
-      grub_enable_os_prober.enable = true; # Detect other operating systems
+      grub_enable_os_prober.enable = false; # Detect other operating systems
       systemd-boot.enable = true; # systemd-boot
 
       # Alternative bootloader
