@@ -1,4 +1,3 @@
-# ~/.nixos/system/default.nix
 {...}: {
   imports = [
     ./sysconfig.nix

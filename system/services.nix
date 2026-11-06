@@ -2,7 +2,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   services.libinput.enable = true;
   services.pipewire = {
     enable = true;
@@ -38,9 +39,6 @@
   ];
 
   services.upower.enable = true;
-
-  # Tailscale
-  services.tailscale.enable = true;
 
   services.pcscd.enable = true;
 

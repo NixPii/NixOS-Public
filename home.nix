@@ -4,7 +4,8 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   home.username = "nixpii";
   home.homeDirectory = "/home/nixpii";
   home.stateVersion = "26.05";
@@ -118,7 +119,6 @@
         "aliases"
         "alias-finder"
         "catimg"
-        "colorize"
         "colored-man-pages"
         "common-aliases"
         "conda"
@@ -164,7 +164,6 @@
         "screen"
         "ssh"
         "ssh-agent"
-        "sudo"
         "themes"
         "torrent"
         "vi-mode"
@@ -235,17 +234,18 @@
     enable = true;
   };
 
-  xdg.configFile."openvr/openvrpaths.vrpath".text = let
-    steam = "${config.xdg.dataHome}/Steam";
-  in
+  xdg.configFile."openvr/openvrpaths.vrpath".text =
+    let
+      steam = "${config.xdg.dataHome}/Steam";
+    in
     builtins.toJSON {
       version = 1;
       jsonid = "vrpathreg";
 
       external_drivers = null;
-      config = ["${steam}/config"];
+      config = [ "${steam}/config" ];
 
-      log = ["${steam}/logs"];
+      log = [ "${steam}/logs" ];
 
       runtime = [
         "${pkgs.opencomposite}/lib/opencomposite"

@@ -18,7 +18,6 @@
   programs.thunar = {
     enable = true;
     plugins = with pkgs; [
-      thunar-archive-plugin
       thunar-volman
       thunar-archive-plugin
       thunar-vcs-plugin
@@ -34,9 +33,7 @@
     ddcutil
     ddcutil-service
     pavucontrol
-    mpv
     ffmpeg
-    wireguard-tools
     telegram-desktop
     qbittorrent
     kdePackages.kcalc
@@ -46,7 +43,6 @@
     openvpn
     mc
     btop
-    vlc
     docker-compose
     file
     dnsutils
@@ -66,12 +62,10 @@
     adwaita-icon-theme
     brightnessctl
     fastfetch
-    pay-respects
     zsh-autosuggestions
     grim
     slurp
     curlFull
-    unzip
     coreutils-full
     kdePackages.ark
     bat
@@ -81,7 +75,6 @@
     luajitPackages.nvim-cmp
     vimPlugins.image-nvim
     bibata-cursors
-    swaybg
     gparted-full
     clinfo
     kdePackages.filelight
@@ -94,11 +87,9 @@
     libsecret
     wireguard-tools
     bluez-experimental
-    libinput
     freerdp
     dialog
     hw-probe
-    lm_sensors
     pciutils
     eza
     fzf
@@ -128,7 +119,6 @@
     # Xwayland
     xwayland
     wayback-x11
-    xeyes
 
     # NVIM
     nodejs
@@ -136,7 +126,6 @@
     gcc
     gnumake
     unzip
-    curl
     git
 
     # Neat

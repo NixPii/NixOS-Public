@@ -28,14 +28,14 @@ in
     '';
 
     grub_full.enable = lib.mkEnableOption ''
-      Enable the full GRUB config, this is currently not used, and it is a remenant. Please DO NOT ENABLE.
+      Enable the full GRUB config.
     '';
 
     grub_enable_os_prober.enable = lib.mkEnableOption ''
       Enable GRUB to use os-prober (default: false)
     '';
 
-    systemd-boot.enable = lib.mkEnableOption "Enable the default systemd-boot bootloader";
+    systemd-boot.enable = lib.mkEnableOption "Change the default bootloader to systemd-boot";
   };
 
   config = lib.mkMerge [
@@ -43,7 +43,7 @@ in
       assertions = [
         {
           assertion = enabledBootloadersCount < 2; # Check if Bootloader count is < 2 and throw expection
-          message = "You can only enable one bootloader option at a time (grub_minimal, limine, or grub_full).";
+          message = "You can only enable one bootloader option at a time (grub_minimal, limine, grub_full, or systemd-boot).";
         }
         {
           assertion = !(cfg.grub_minimal.enable && cfg.grub_full.enable); # Check if both GRUB options are enabled and throw expection

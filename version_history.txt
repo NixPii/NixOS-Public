@@ -1,3 +1,49 @@
+V2.0.0 "New Bee-ginings"  (Latest Stable)
+- Introduced new gaming module 
+  ├── **Steam**
+  │   ├── Enable/Disable Steam
+  │   ├── Installation Variants
+  │   │   ├── Minimal
+  │   │   │   └── Basic Steam installation
+  │   │   └── Full (Default)
+  │   │       ├── Additional gaming libraries
+  │   │       ├── VR/OpenXR support
+  │   │       │   ├── Monado
+  │   │       │   └── WiVRn
+  │   │       ├── VRChat timezone fix
+  │   │       ├── Proton-GE
+  │   │       ├── SteamTinkerLaunch
+  │   │       ├── Protontricks
+  │   │       └── HIDAPI support
+  │   ├── Millennium
+  │   │   └── Optional custom Steam client
+  │   └── Networking
+  │       ├── Remote Play firewall support
+  │       └── Local Network Game Transfers
+  │
+  ├── **Minecraft**
+  │   ├── Prism Launcher
+  │   ├── Optional Lunar Client
+  │   └── Java Development Kits (JDKs)
+  │       ├── Java 8
+  │       ├── Java 11
+  │       ├── Java 17
+  │       ├── Java 21
+  │       └── Java 25
+  │
+  ├─ Feral GameMode
+  │   └── Optional GameMode support
+  └─ Note: All three gaming components can be enabled or disabled independently!
+  - Introduced a new changelog formatting style! :D
+  -  Moved to version 2.x.x due to major differences from 1.x.x
+  - Added a workaround for GTK-2 compatibility :/
+  - Fixed spelling mistakes in the README
+  - A New Chapter! Version 2.0.0 marks a major step forward for the project, and such a paradigm shift from 1.x.x that i decided to jump to V2.0.0
+  - Removed GameScope due to NVIDIA bugs. 
+  - Removed Duplicates.
+  - Fixed typos (yet again)
+
+
 T2.0.1 "The Roar to Merge"
 - Default Desktop session moved back to Plasma6
 - Gnome is still enabled, as a way to test
@@ -58,8 +104,8 @@ T1.5.3 "Cyber Crane"
 - Noctalia Shell moved to the desktop module 
 - Note on this version: 
   Noctalia has been disabled due to compile requirements on Laptops. 
-  Please re-enable noctalia if your actively using any window manager.
-  Thank you, and thank you for the feedback, to the people who activelly helped me :D 
+  Please re-enable noctalia if you’re actively using any window manager.
+  Thank you, and thank you for the feedback, to the people who actively helped me :D 
 
 T1.5.2 "Suspicious Stoat" 
 - Fixed Niri to be toggle-able
@@ -69,7 +115,7 @@ T1.5.2 "Suspicious Stoat"
 T1.5.1 "The Hotfix"
 - Same as main (Right now)
 
-V1.5-1 "Hotfix" (Latest Stable)
+V1.5-1 "Hotfix" 
 - Removed Zen browser from flake
 - Updated flake.lock 
 
@@ -93,6 +139,38 @@ V1.5 "The Great Nixodus"
 - Removed Thunderbird and CoolerControl enablement
 - Trimmed the default package list, to save on space.
 - Removed the dedicated Steam Gamescope session and its hard-coded DP-2 setting. Gamescope itself stays
+- Renamed the system, program and theme import files to make their purpose clearer
+- Cleaned up duplicate package entries and reworked the testing README
+- Still TODO: Update old option names in the documentation and finish wiring up the Niri toggle, which currently doesn't turn Niri off
+
+V1.5.1-Special 
+- Happy Halloween :D 
+
+
+V1.5-1 "Hotfix" 
+- Removed Zen browser from flake
+- Updated flake.lock 
+
+V1.5 "The Great Nixodus"
+
+- Remember when I said T1.4.X wouldn't add new features or modules? That aged well :D
+- Re-done configuration.nix and moved the custom options under nixpii.system
+- GPU, AI, Bootloader and Virtualisation options have new paths now. Please update your private configs accordingly!
+- Added modules/desktop.nix, with options for Plasma 6, GNOME, COSMIC, Niri and Hyprland
+- Added modules/dev.nix, so you can manage your development tools without digging through a thousand files
+- Neovim now has full, minimal and disabled modes. Full is still enabled by default
+- Moved the Neovim config into its own file and disabled its Yazi integration. Standalone Yazi stays enabled
+- Added a Lazygit toggle, enabled by default
+- Made Alcom & Unity optional, both disabled by default. The Alcom option includes Unity Hub and the existing editor wrapper
+- Moved WiVRn and the main VR package configuration into modules/vr.nix. Enable Meta headset support if you need it!
+- VR is disabled by default now. There are still a few VR leftovers outside the module, more cleanup to come
+- Added nixpkgs-xr and updated the flake
+- Removed the temporary xwayland-satellite pin and several stable-package overrides
+- Slimmed down the base nix-ld list from 115 entries to 11. VR adds extra libraries when enabled
+- Removed default Docker and LACT enablement. Docker Compose is still included
+- Removed Thunderbird and CoolerControl enablement
+- Trimmed the default package list, to save on space.
+- Removed the dedicated Steam Gamescope session and its hardcoded DP-2 setting. Gamescope itself stays
 - Renamed the system, program and theme import files to make their purpose clearer
 - Cleaned up duplicate package entries and reworked the testing README
 - Still TODO: Update old option names in the documentation and finish wiring up the Niri toggle, which currently doesn't turn Niri off
@@ -134,13 +212,13 @@ T1.4-1 "Fur Fix Fox":
 - T1.4.X will be a hotfix and optimisation update, don't expect new features or modules 
 - Developer highly recommends using V1.4-2, the T (testing) branch will be very unstable 
 
-V1.4-2 (Hotfix) (Latest Stable):
+V1.4-2 (Hotfix):
 - Fixed build issue, hopefully it works now :D 
 
 V1.4-1 (Hotfix): 
 - Hotfix for Millennium Steam 
 
-V1.4 "Flippy Floppy Diskette Trophy" (Latest Stable) 
+V1.4 "Flippy Floppy Diskette Trophy" 
 - Modified .gitignore
 - Added support for fully private configuration sections within the config
 - Updated flake.nix for the aforementioned private config changes

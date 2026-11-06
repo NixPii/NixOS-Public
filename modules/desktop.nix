@@ -4,9 +4,11 @@
   pkgs,
   inputs,
   ...
-}: let
+}:
+let
   cfg = config.nixpii.system.desktop;
-in {
+in
+{
   options.nixpii.system.desktop = {
     plasma6.enable = lib.mkEnableOption "Enable Plasma 6";
 
@@ -42,7 +44,7 @@ in {
 
         Enable the Noctalia shell for Window Managers
 
-        The avalible options are:
+        The available options are:
         nixpkgs - Enables the version located in nixpkgs
         flake - Enable tracking main from the Noctalia repo via the flake
         disabled (default) - Disabled, does not build noctalia
@@ -68,20 +70,20 @@ in {
       xdg.portal = {
         config = {
           common = {
-            default = ["gtk"];
+            default = [ "gtk" ];
           };
 
           niri = {
             # Niri XDG Config
-            "org.freedesktop.impl.portal.FileChooser" = ["gtk"];
+            "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
           };
 
           kde = {
-            default = ["kde"];
+            default = [ "kde" ];
           };
 
           cosmic = {
-            default = ["cosmic"];
+            default = [ "cosmic" ];
           };
         };
       };

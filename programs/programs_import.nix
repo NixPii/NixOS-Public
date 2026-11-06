@@ -1,4 +1,3 @@
-# ~/.nixos/programs/default.nix
 { ... }: {
   imports = [
     ./packages.nix

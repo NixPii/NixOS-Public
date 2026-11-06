@@ -2,7 +2,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   networking.hostName = "nixie"; # Define your hostname.
   networking.networkmanager = {
     enable = true;
@@ -68,12 +69,13 @@
   };
 
   environment.etc.hosts.enable = true;
-  security.pam.services.swaylock = {};
-  security.sudo.wheelNeedsPassword = false;
+  security.pam.services.swaylock = { };
+  security.sudo.wheelNeedsPassword = true;
 
   # Auto updates
   system.autoUpgrade.enable = true;
   system.autoUpgrade.dates = "weekly";
+  system.autoUpgrade.flake = "/home/nixpii/NixOS-Public#nixie";
 
   # Garbage Collection
   nix.gc.automatic = true;

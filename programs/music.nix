@@ -2,9 +2,11 @@
   pkgs,
   inputs,
   ...
-}: let
+}:
+let
   spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-in {
+in
+{
   imports = [
     inputs.spicetify-nix.nixosModules.spicetify
   ];
@@ -32,14 +34,12 @@ in {
       madeForYouShortcut
       romajiConvert
       spicyLyrics
-      phraseToPlaylist
       ytVideo
       copyToClipboard
       history
       adblock
       savePlaylists
       fullScreen
-      copyLyrics
       bestMoment
       skipStats
       phraseToPlaylist

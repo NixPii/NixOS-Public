@@ -65,7 +65,7 @@ in
       lunar.enable = lib.mkEnableOption "Enable Lunar Client";
 
       jdks = lib.mkOption {
-        type = lib.types.listOf lib.types.pkgs;
+        type = lib.types.listOf lib.types.package;
         default = with pkgs; [
           jdk8
           jdk11
@@ -124,7 +124,7 @@ in
         pkgs.prismlauncher
       ]
       ++ lib.optional cfg.minecraft.lunar.enable pkgs.lunarclient
-      ++ lib.optional cfg.minecraft.enable cfg.minecraft.jdks;
+      ++ cfg.minecraft.jdks;
 
     })
 
