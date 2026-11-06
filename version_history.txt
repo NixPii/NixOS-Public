@@ -1,15 +1,153 @@
-Note from the developer:
-Unfortunately, due to Mental Health & School struggles, the developer needs to slown 
-down with the development of this flake :/ 
-I am unfortunately just one person, I do not have a team to manage this 
-Updates might come out slower, please be patient!
-Thank you for understanding!
+V2.0.0 "New Bee-ginings"  (Latest Stable)
+- Introduced new gaming module 
+  ├── **Steam**
+  │   ├── Enable/Disable Steam
+  │   ├── Installation Variants
+  │   │   ├── Minimal
+  │   │   │   └── Basic Steam installation
+  │   │   └── Full (Default)
+  │   │       ├── Additional gaming libraries
+  │   │       ├── VR/OpenXR support
+  │   │       │   ├── Monado
+  │   │       │   └── WiVRn
+  │   │       ├── VRChat timezone fix
+  │   │       ├── Proton-GE
+  │   │       ├── SteamTinkerLaunch
+  │   │       ├── Protontricks
+  │   │       └── HIDAPI support
+  │   ├── Millennium
+  │   │   └── Optional custom Steam client
+  │   └── Networking
+  │       ├── Remote Play firewall support
+  │       └── Local Network Game Transfers
+  │
+  ├── **Minecraft**
+  │   ├── Prism Launcher
+  │   ├── Optional Lunar Client
+  │   └── Java Development Kits (JDKs)
+  │       ├── Java 8
+  │       ├── Java 11
+  │       ├── Java 17
+  │       ├── Java 21
+  │       └── Java 25
+  │
+  ├─ Feral GameMode
+  │   └── Optional GameMode support
+  └─ Note: All three gaming components can be enabled or disabled independently!
+  - Introduced a new changelog formatting style! :D
+  -  Moved to version 2.x.x due to major differences from 1.x.x
+  - Added a workaround for GTK-2 compatibility :/
+  - Fixed spelling mistakes in the README
+  - A New Chapter! Version 2.0.0 marks a major step forward for the project, and such a paradigm shift from 1.x.x that i decided to jump to V2.0.0
+  - Removed GameScope due to NVIDIA bugs. 
+  - Removed Duplicates.
+  - Fixed typos (yet again)
 
-V1.5.1-Special (Latest Stable) 
+
+T2.0.1 "The Roar to Merge"
+- Default Desktop session moved back to Plasma6
+- Gnome is still enabled, as a way to test
+- Default bootloader changed to systemd-boot for new systems
+
+
+T2.0.0 "New Bee-ginings" 
+- Introduced new gaming module 
+├── Steam
+│   ├── Enable/Disable Steam
+│   ├── Variants
+│   │   ├── Minimal
+│   │   │   └── Basic Steam installation
+│   │   └── Full (Default)
+│   │       ├── Additional libraries
+│   │       ├── VR/OpenXR support
+│   │       │   ├── Monado
+│   │       │   └── WiVRn
+│   │       ├── VRChat timezone fix
+│   │       ├── Proton-GE
+│   │       ├── SteamTinkerLaunch
+│   │       ├── Protontricks
+│   │       └── HIDAPI support
+│   ├── Millennium
+│   │   └── Optional custom Steam client
+│   └── Networking
+│       ├── Remote Play firewall support
+│       └── Local Network Game Transfers
+│
+├── Minecraft
+│   ├── Prism Launcher
+│   ├── Optional Lunar Client
+│   └── Java Development Kits (JDKs)
+│       ├── Java 8
+│       ├── Java 11
+│       ├── Java 17
+│       ├── Java 21
+│       └── Java 25
+│
+├── Feral GameMode
+│   └── Optional GameMode support
+└─All three gaming components can be enabled or disabled independently.
+- Introduces new formatting scheme, which you can see here ▲ :D 
+- Moved version to 2.x.x due to the large differences from 1.x.x 
+- Workaround added for GTK-2 :/
+- Fixed spelling mistakes in README
+
+T1.5.3-SPECIAL: 
 - Happy Halloween :D 
 
 
-V1.5-1 "Hotfix" (Latest Stable)
+T1.5.3 "Cyber Crane"
+- Fixed Niri for the final time 
+- Finally moved away from all the default.nix's 
+- Fixed Gear Lever not compiling on the new commit 
+- new-lg4ff has been disabled due to conflicts with building the kernel (TODO: Fix)
+- Noctalia Shell has been disabled from the default build environment.
+- Noctalia Shell moved to the desktop module 
+- Note on this version: 
+  Noctalia has been disabled due to compile requirements on Laptops. 
+  Please re-enable noctalia if you’re actively using any window manager.
+  Thank you, and thank you for the feedback, to the people who actively helped me :D 
+
+T1.5.2 "Suspicious Stoat" 
+- Fixed Niri to be toggle-able
+- Started new experimental branch (work in progress)
+
+
+T1.5.1 "The Hotfix"
+- Same as main (Right now)
+
+V1.5-1 "Hotfix" 
+- Removed Zen browser from flake
+- Updated flake.lock 
+
+V1.5 "The Great Nixodus"
+
+- Remember when I said T1.4.X wouldn't add new features or modules? That aged well :D
+- Re-done configuration.nix and moved the custom options under nixpii.system
+- GPU, AI, Bootloader and Virtualisation options have new paths now. Please update your private configs accordingly!
+- Added modules/desktop.nix, with options for Plasma 6, GNOME, COSMIC, Niri and Hyprland
+- Added modules/dev.nix, so you can manage your development tools without digging through a thousand files
+- Neovim now has full, minimal and disabled modes. Full is still enabled by default
+- Moved the Neovim config into its own file and disabled its Yazi integration. Standalone Yazi stays enabled
+- Added a Lazygit toggle, enabled by default
+- Made Alcom & Unity optional, both disabled by default. The Alcom option includes Unity Hub and the existing editor wrapper
+- Moved WiVRn and the main VR package configuration into modules/vr.nix. Enable Meta headset support if you need it!
+- VR is disabled by default now. There are still a few VR leftovers outside the module, more cleanup to come
+- Added nixpkgs-xr and updated the flake
+- Removed the temporary xwayland-satellite pin and several stable-package overrides
+- Slimmed down the base nix-ld list from 115 entries to 11. VR adds extra libraries when enabled
+- Removed default Docker and LACT enablement. Docker Compose is still included
+- Removed Thunderbird and CoolerControl enablement
+- Trimmed the default package list, to save on space.
+- Removed the dedicated Steam Gamescope session and its hard-coded DP-2 setting. Gamescope itself stays
+- Renamed the system, program and theme import files to make their purpose clearer
+- Cleaned up duplicate package entries and reworked the testing README
+- Still TODO: Update old option names in the documentation and finish wiring up the Niri toggle, which currently doesn't turn Niri off
+
+V1.5.1-Special 
+- Happy Halloween :D 
+
+
+V1.5-1 "Hotfix" 
 - Removed Zen browser from flake
 - Updated flake.lock 
 
@@ -44,7 +182,7 @@ T1.5 "The final countdown"
 T1.4.4 "Operaatio Sisu"
 - Miksi tämä viesti on suomalainen?
 - Reduced Redundancy by quite a lot 
-- Added new way to manage your development enviroment 
+- Added new way to manage your development environment 
 - Renamed a few import scripts from default to their actual purpose
 - Added new module desktop.nix 
 - Removed Redundant Configurations to make this config even smaller
@@ -56,31 +194,31 @@ T1.4.3. "The Slim down update Part 3"
 - Added new module (Needs Documentation)
 
 T1.4.2 "VR & Slim update, Part 2"
-- These names are getting redicilously long 
+- These names are getting ridiculously long 
 - Also fixed services.nix so it doesn't import VR automatically 
 - Also slimmed down nix-ld
 - Slimmed down gaming.nix 
-- Removed (Latest Testing), becuase it was kinda stupid 
+- Removed (Latest Testing), because it was kinda stupid 
 - Note Moved up to top
 
 T1.4.1 "The VR Update, Part 1": 
 - Updated flake
 - Moved all stuff to follow NixPkgs Unstable, the stable builds break stuff
-- Moved all the VR stuff into a custom seperated modules/vr.nix 
-- Removed some obselete system-specific code 
+- Moved all the VR stuff into a custom separated modules/vr.nix 
+- Removed some obsolete system-specific code 
 
 T1.4-1 "Fur Fix Fox": 
 - Backported changed from Stable branch 
 - T1.4.X will be a hotfix and optimisation update, don't expect new features or modules 
-- Developer highly recomends using V1.4-2, the T (testing) branch will be very unstable 
+- Developer highly recommends using V1.4-2, the T (testing) branch will be very unstable 
 
 V1.4-2 (Hotfix):
 - Fixed build issue, hopefully it works now :D 
 
 V1.4-1 (Hotfix): 
-- Hotfix for Millenium Steam 
+- Hotfix for Millennium Steam 
 
-V1.4 "Flippy Floppy Diskette Trophy" (Latest Stable) 
+V1.4 "Flippy Floppy Diskette Trophy" 
 - Modified .gitignore
 - Added support for fully private configuration sections within the config
 - Updated flake.nix for the aforementioned private config changes
@@ -90,7 +228,7 @@ V1.4 "Flippy Floppy Diskette Trophy" (Latest Stable)
 - Added a new README for the private directory
 - Updated music.nix
 - Removed flatpak handling from flake due to https://github.com/in-a-dil-emma/declarative-flatpak/issues/62
-- Please reinstall all aplications that you have installed via the two files.
+- Please reinstall all applications that you have installed via the two files.
 - Introduced refined naming scheme, so we don't have a thousand versions about nothing 
 - Disabled GNOME by default. Planning to move the whole desktop stuff into modules 
 - Pruned configuration.
@@ -102,7 +240,7 @@ T1.3.5-1 "Flipping Bits":
 
 T1.3.5 "Flipping Bits": 
 - Removed flatpak handling from flake due to https://github.com/in-a-dil-emma/declarative-flatpak/issues/62
-- Please reinstall all aplications that you have installed via the two files.
+- Please reinstall all applications that you have installed via the two files.
 - Introduced refined naming scheme, so we don't have a thousand versions about nothing 
 - Disabled GNOME by default. Planning to move the whole desktop stuff into modules 
 - Pruned configuration.
@@ -128,8 +266,8 @@ V1.3.2-1 "Satellite Soup":
 
 V1.3.2 "Satellite Soup":
 - Preparing merge to main
-- Fixed xwayland-satelite being broken by downgrading the version
-- Completely new Flatpak handling via declerative-flatpak
+- Fixed xwayland-satellite being broken by downgrading the version
+- Completely new Flatpak handling via declarative-flatpak
 - Added Codename 
 - Added new testing config (hw-test.nix)
 - Added better bootloader config via a bootloader module 
@@ -149,12 +287,12 @@ V1.2.0 "Aalto '12":
 
 V1.1.0 "Aalto '12": 
 - Merged AMD & Nvidia configs into one, AMD & NVIDIA branches are now legacy
-- Fixed Readme 
+- Fixed README 
 - Fixed config, migrated GPU config from Testing -> Stable
 
 V1.0.1 "Reproducible Mayhem":
 - Added Thunar Ghostty integration
-- Updated Readme 
+- Updated README 
 
 V1.0.0 "Reproducible Mayhem": 
 - Initial Release

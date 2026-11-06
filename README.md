@@ -8,9 +8,6 @@ My public NixOS configuration and flake.
 > Changes and larger refactors are developed on the `testing` branch first. Once
 > they are working well enough to be considered stable, they are merged into
 > `main`.
->
-> The old `amd` and `nvidia` branches are archived. GPU selection is now handled
-> directly through configuration in `main`.
 
 ## About This Repository
 
@@ -130,37 +127,12 @@ The `testing` branch may therefore be ahead of `main`, but it may also contain
 incomplete or experimental work.
 
 If you want the current recommended configuration, use `main`.
+The branch structure is also shown here:
 
-### `amd`
-
-**Archived.**
-
-This branch was previously used for the AMD-focused version of the
-configuration.
-
-AMD support now lives in `main` and is selected with:
-
-```nix
-nixpii.system.hardware.gpu.profile = "amd";
-```
-
-### `nvidia`
-
-**Archived.**
-
-This branch was previously used to develop and experiment with NVIDIA support.
-
-NVIDIA support now lives directly in `main`.
-
-For example:
-
-```nix
-nixpii.system.hardware.gpu.profile = "nvidia";
-```
-
-Separate AMD and NVIDIA Git branches are no longer necessary.
-
----
+| Branch    | Status          | Purpose                                                       |
+| --------- | --------------- | ------------------------------------------------------------- |
+| `main`    | **Recommended** | Current configuration considered stable enough for normal use |
+| `testing` | **Development** | Active testing and staging before changes reach `main`        |
 
 # GPU Configuration
 

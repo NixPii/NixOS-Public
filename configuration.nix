@@ -1,7 +1,12 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-{inputs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}:
+{
   nixpii.system = {
     # ============================================================
     # DEVELOPMENT TOOLS
@@ -41,13 +46,41 @@
 
     desktop = {
       # Desktop environments
-      plasma6.enable = false; # KDE Plasma 6
+      plasma6.enable = true; # KDE Plasma 6
       gnome.enable = true; # GNOME
       cosmic.enable = false; # COSMIC
 
       # Wayland compositors
       niri.enable = true; # Niri scrolling compositor
       hyprland.enable = false; # Hyprland compositor
+
+      noctalia = "disabled";
+    };
+
+    # ============================================================
+    # GAMING CONFIG
+    # ============================================================
+    gaming = {
+      # Steam Related Configuration
+      steam = {
+        enable = false; # Enable Steam
+        variant = "full"; # Options: "full", "minimal"
+        millennium.enable = false; # Enable the Millennium Steam client
+      };
+
+      # Minecraft Related Configuration
+      minecraft = {
+        enable = false; # Enable Minecraft support via Prism Launcher
+        lunar.enable = false; # Enable Lunar Client
+
+        jdks = with pkgs; [
+          jdk8
+          jdk11
+          jdk17
+          jdk21
+          jdk25
+        ];
+      };
     };
 
     # ============================================================
@@ -56,9 +89,10 @@
 
     bootloader = {
       # GRUB
-      grub_minimal.enable = true; # Minimal GRUB setup
+      grub_minimal.enable = false; # Minimal GRUB setup
       grub_full.enable = false; # GRUB with additional theming
       grub_enable_os_prober.enable = false; # Detect other operating systems
+      systemd-boot.enable = true; # systemd-boot
 
       # Alternative bootloader
       limine.enable = false; # Limine bootloader
@@ -103,18 +137,11 @@
   imports = [
     # Include the results of the hardware scan.
     ./system/sys_import.nix
-    ./modules/gpu.nix
-    ./modules/ai.nix
-    ./modules/bootloader.nix
-    ./modules/virt.nix
-    ./modules/vr.nix
-    ./modules/dev.nix
     ./programs/programs_import.nix
-    ./users/default.nix
-    ./extra/default.nix
+    ./users/users_import.nix
+    ./extra/extra_import.nix
     ./theme/theme_import.nix
-    ./modules/imports/neovim.nix
-    ./modules/desktop.nix
+    "${inputs.modules}/modules.nix"
     "${inputs.private}/private.nix" # Include the users private configuration, which of course, is not included.
   ];
   system.stateVersion = "25.11"; # Did you read the comment?

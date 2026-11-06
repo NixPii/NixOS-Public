@@ -2,15 +2,9 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   nixpkgs.config.allowUnfree = true;
-  programs.firefox.enable = true;
-  # Script Kiddie stuff
-  programs.wireshark = {
-    enable = true;
-    dumpcap.enable = true;
-    usbmon.enable = true;
-  };
 
   programs.nh = {
     enable = true;
@@ -24,7 +18,6 @@
   programs.thunar = {
     enable = true;
     plugins = with pkgs; [
-      thunar-archive-plugin
       thunar-volman
       thunar-archive-plugin
       thunar-vcs-plugin
@@ -40,9 +33,7 @@
     ddcutil
     ddcutil-service
     pavucontrol
-    mpv
     ffmpeg
-    wireguard-tools
     telegram-desktop
     qbittorrent
     kdePackages.kcalc
@@ -52,7 +43,6 @@
     openvpn
     mc
     btop
-    vlc
     docker-compose
     file
     dnsutils
@@ -72,12 +62,10 @@
     adwaita-icon-theme
     brightnessctl
     fastfetch
-    pay-respects
     zsh-autosuggestions
     grim
     slurp
     curlFull
-    unzip
     coreutils-full
     kdePackages.ark
     bat
@@ -87,8 +75,6 @@
     luajitPackages.nvim-cmp
     vimPlugins.image-nvim
     bibata-cursors
-    gamemode
-    swaybg
     gparted-full
     clinfo
     kdePackages.filelight
@@ -101,11 +87,9 @@
     libsecret
     wireguard-tools
     bluez-experimental
-    libinput
     freerdp
     dialog
     hw-probe
-    lm_sensors
     pciutils
     eza
     fzf
@@ -135,7 +119,6 @@
     # Xwayland
     xwayland
     wayback-x11
-    xeyes
 
     # NVIM
     nodejs
@@ -143,14 +126,7 @@
     gcc
     gnumake
     unzip
-    curl
     git
-
-    # Discord
-    (discord.override {
-      withOpenASAR = true;
-      withVencord = true;
-    })
 
     # Neat
     img4lib
@@ -158,13 +134,8 @@
     easyeffects
     hyfetch
 
-    # MC
-    prismlauncher
-    lunar-client
-    jdk8
-    jdk11
-    jdk17
-    jdk21
+    # Java Development Kit (JDK)
+    jdk25
 
     # Fun :D
     cmatrix
@@ -244,7 +215,7 @@
     openFirewall = true;
   };
 
-  nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
+  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
   # AppImage
   programs.appimage = {
@@ -265,16 +236,10 @@
     enable = true;
     enableSSHSupport = true;
   };
-  virtualisation = {
-    waydroid = {
-      enable = true;
-      package = pkgs.waydroid-nftables;
-    };
-  };
 
   programs.obs-studio = {
     enable = true;
-    enableVirtualCamera = true;
+    enableVirtualCamera = false;
 
     plugins = with pkgs.obs-studio-plugins; [
       wlrobs

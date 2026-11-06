@@ -24,6 +24,25 @@
           ]);
       });
     })
+
+    (final: prev: {
+      gearlever = prev.gearlever.overrideAttrs (old: {
+        makeWrapperArgs = [
+          "--prefix"
+          "PATH"
+          ":"
+          (prev.lib.removePrefix
+            "--prefix PATH : "
+            (builtins.elemAt old.makeWrapperArgs 1))
+        ];
+
+        preFixup =
+          (old.preFixup or "")
+          + ''
+            makeWrapperArgs+=("''${gappsWrapperArgs[@]}")
+          '';
+      });
+    })
   ];
 
   # Temporary fix
@@ -31,14 +50,16 @@
 
   environment.pathsToLink = ["share/thumbnailers"];
 
-  # Niri messing  up stuff :/
-  services.displayManager.defaultSession = lib.mkForce "niri";
-
   # Nautilus extensions
 
   programs.nautilus-open-any-terminal = {
     enable = false;
     terminal = "ghostty";
+  };
+
+  # This stays until packages move from GTK2 -> GTK 3 or GTK 4
+  nixpkgs.config = {
+    problems.handlers = {"gtk+".broken = "warn";};
   };
 
   environment.systemPackages = with pkgs; [

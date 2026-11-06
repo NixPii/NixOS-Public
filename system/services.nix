@@ -14,9 +14,6 @@
   };
   security.rtkit.enable = true;
   services.openssh.enable = true;
-  services.spice-autorandr.enable = true;
-  services.spice-vdagentd.enable = true;
-  services.spice-webdavd.enable = true;
   services.smartd.enable = false;
   services.flatpak.enable = true;
   services.blueman.enable = true;
@@ -25,9 +22,6 @@
 
   # Disable Seahorse for some reason
   programs.seahorse.enable = false;
-
-  # Niri
-  programs.niri.enable = true;
 
   services.gnome = {
     # GNOME Settings to use with Niri
@@ -44,25 +38,7 @@
     gnome-manuals
   ];
 
-  # Window Managers (X11)
-  services.xserver = {
-    enable = true;
-    xkb.layout = "hu";
-    windowManager = {
-      twm.enable = true;
-    };
-  };
-
   services.upower.enable = true;
-
-  # Tailscale
-  services.tailscale.enable = true;
-  services.tailscale.extraDaemonFlags = [ "--no-logs-no-support" ];
-
-  services.udev.packages = [
-    pkgs.yubikey-personalization
-    pkgs.slimevr
-  ];
 
   services.pcscd.enable = true;
 

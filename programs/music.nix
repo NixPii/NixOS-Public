@@ -13,10 +13,6 @@ in
 
   # Music & MIDI Production / Playback
   environment.systemPackages = with pkgs; [
-    linthesia
-    lmms-full
-    neothesia
-    synthesia
     cider-2
     vlc
     mpv
@@ -38,14 +34,12 @@ in
       madeForYouShortcut
       romajiConvert
       spicyLyrics
-      phraseToPlaylist
       ytVideo
       copyToClipboard
       history
       adblock
       savePlaylists
       fullScreen
-      copyLyrics
       bestMoment
       skipStats
       phraseToPlaylist

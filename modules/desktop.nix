@@ -1,6 +1,8 @@
 {
   config,
   lib,
+  pkgs,
+  inputs,
   ...
 }:
 let
@@ -26,7 +28,27 @@ in
 
     cosmic = {
       enable = lib.mkEnableOption "Enable COSMIC";
+    };
 
+    noctalia = lib.mkOption {
+      type = lib.types.nullOr (
+        lib.types.enum [
+          "nixpkg"
+          "flake"
+          "disabled"
+        ]
+      );
+      default = "disabled";
+
+      description = ''
+
+        Enable the Noctalia shell for Window Managers
+
+        The available options are:
+        nixpkgs - Enables the version located in nixpkgs
+        flake - Enable tracking main from the Noctalia repo via the flake
+        disabled (default) - Disabled, does not build noctalia
+      '';
     };
   };
 
@@ -43,6 +65,30 @@ in
 
     (lib.mkIf cfg.niri.enable {
       programs.niri.enable = true;
+
+      # XDG workaround
+      xdg.portal = {
+        config = {
+          common = {
+            default = [ "gtk" ];
+          };
+
+          niri = {
+            # Niri XDG Config
+            "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
+          };
+
+          kde = {
+            default = [ "kde" ];
+          };
+
+          cosmic = {
+            default = [ "cosmic" ];
+          };
+        };
+      };
+
+      services.displayManager.defaultSession = lib.mkForce "niri";
     })
 
     (lib.mkIf cfg.hyprland.enable {
@@ -54,5 +100,16 @@ in
       services.desktopManager.cosmic.xwayland.enable = true;
     })
 
+    (lib.mkIf (cfg.noctalia == "nixpkg") {
+      environment.systemPackages = with pkgs; [
+        noctalia-shell
+      ];
+    })
+
+    (lib.mkIf (cfg.noctalia == "flake") {
+      environment.systemPackages = [
+        inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+      ];
+    })
   ];
 }

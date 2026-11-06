@@ -119,7 +119,6 @@
         "aliases"
         "alias-finder"
         "catimg"
-        "colorize"
         "colored-man-pages"
         "common-aliases"
         "conda"
@@ -165,7 +164,6 @@
         "screen"
         "ssh"
         "ssh-agent"
-        "sudo"
         "themes"
         "torrent"
         "vi-mode"
@@ -257,5 +255,14 @@
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
+  };
+
+  home.pointerCursor = {
+    enable = true;
+    name = "Bibata-Modern-Ice";
+    package = pkgs.bibata-cursors;
+    size = 24;
+    gtk.enable = true;
+    x11.enable = true;
   };
 }

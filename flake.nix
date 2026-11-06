@@ -46,7 +46,12 @@
     };
 
     private = {
-      url = "path:./private"; # TODO, please change this, user.
+      url = "path:./private";
+      flake = false;
+    };
+
+    modules = {
+      url = "path:./modules";
       flake = false;
     };
 
@@ -59,58 +64,58 @@
     nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
   };
 
-  outputs = inputs @ {
-    self,
-    nixpkgs,
-    nixpkgs-stable,
-    home-manager,
-    nvf,
-    catppuccin,
-    ratbag-git,
-    private,
-    extra-usrcfg,
-    nixpkgs-xr,
-    ...
-  }: let
-    system = "x86_64-linux";
-    nixpkgs-stable = inputs.nixpkgs-stable.legacyPackages.${system};
-  in {
-    nixosConfigurations.nixie = nixpkgs.lib.nixosSystem {
-      #system = "x86_64-linux";
-      inherit system;
+  outputs =
+    inputs@{
+      self,
+      nixpkgs,
+      nixpkgs-stable,
+      home-manager,
+      nvf,
+      catppuccin,
+      ratbag-git,
+      private,
+      modules,
+      nixpkgs-xr,
+      ...
+    }:
+    let
+      system = "x86_64-linux";
+      nixpkgs-stable = inputs.nixpkgs-stable.legacyPackages.${system};
+    in
+    {
+      nixosConfigurations.nixie = nixpkgs.lib.nixosSystem {
+        #system = "x86_64-linux";
+        inherit system;
 
-      specialArgs = {
-        inherit inputs;
-        inherit nixpkgs-stable;
-      };
+        specialArgs = {
+          inherit inputs;
+          inherit nixpkgs-stable;
+        };
 
-      modules = [
-        ./configuration.nix
-        ./users/noctalia.nix
+        modules = [
+          ./configuration.nix
 
-        catppuccin.nixosModules.catppuccin
-        home-manager.nixosModules.home-manager
-        nvf.nixosModules.default
-        nixpkgs-xr.nixosModules.nixpkgs-xr
+          catppuccin.nixosModules.catppuccin
+          home-manager.nixosModules.home-manager
+          nvf.nixosModules.default
+          nixpkgs-xr.nixosModules.nixpkgs-xr
 
-        {
-          # Inlined home-manager config
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            users.nixpii = {
-              imports = [
-                # ./home/flatpak.nix
-                # Removed, check version logs
-                ./home.nix
-                catppuccin.homeModules.catppuccin
-              ];
+          {
+            # Inlined home-manager config
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.nixpii = {
+                imports = [
+                  ./home.nix
+                  catppuccin.homeModules.catppuccin
+                ];
+              };
+              extraSpecialArgs = { inherit inputs; };
+              backupFileExtension = "bak";
             };
-            extraSpecialArgs = {inherit inputs;};
-            backupFileExtension = "bak";
-          };
-        }
-      ];
+          }
+        ];
+      };
     };
-  };
 }
