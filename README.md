@@ -148,13 +148,6 @@ If you do not specifically want to help test upcoming changes, you probably want
 | --------- | --------------- | ------------------------------------------------------------- |
 | `main`    | **Recommended** | Current configuration considered stable enough for normal use |
 | `testing` | **Development** | Active testing and staging before changes reach `main`        |
-| `amd`     | **Archived**    | Historical AMD-specific branch                                |
-| `nvidia`  | **Archived**    | Historical NVIDIA-specific branch                             |
-
-The old AMD and NVIDIA branches are no longer part of the normal development
-model.
-
-GPU selection now happens through configuration.
 
 ## GPU Configuration
 

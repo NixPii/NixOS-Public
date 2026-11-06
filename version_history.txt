@@ -1,3 +1,9 @@
+T2.0.1 "The Roar to Merge"
+- Default Desktop session moved back to Plasma6
+- Gnome is still enabled, as a way to test
+- Default bootloader changed to systemd-boot for new systems
+
+
 T2.0.0 "New Bee-ginings" 
 - Introduced new gaming module 
 ├── Steam

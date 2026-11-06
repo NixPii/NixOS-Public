@@ -1,7 +1,11 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-{ inputs, pkgs, ... }: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   nixpii.system = {
     # ============================================================
     # DEVELOPMENT TOOLS
@@ -41,7 +45,7 @@
 
     desktop = {
       # Desktop environments
-      plasma6.enable = false; # KDE Plasma 6
+      plasma6.enable = true; # KDE Plasma 6
       gnome.enable = true; # GNOME
       cosmic.enable = false; # COSMIC
 
@@ -56,7 +60,6 @@
     # GAMING CONFIG
     # ============================================================
     gaming = {
-
       # Steam Related Configuration
       steam = {
         enable = false; # Enable Steam
@@ -77,7 +80,6 @@
           jdk25
         ];
       };
-
     };
 
     # ============================================================
@@ -86,9 +88,10 @@
 
     bootloader = {
       # GRUB
-      grub_minimal.enable = true; # Minimal GRUB setup
+      grub_minimal.enable = false; # Minimal GRUB setup
       grub_full.enable = false; # GRUB with additional theming
-      grub_enable_os_prober.enable = false; # Detect other operating systems
+      grub_enable_os_prober.enable = true; # Detect other operating systems
+      systemd-boot.enable = true; # systemd-boot
 
       # Alternative bootloader
       limine.enable = false; # Limine bootloader
